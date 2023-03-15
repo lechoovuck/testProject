@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link href={% static 'tables/css/styles.css' %} rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="panel-body">
+
+        <h2>Список событий</h2>
+
+        <div class="card_full_width">
+            <div class="card-body">
+                <h5 class="card-title">Фильтр</h5>
+                <div class="row">
+                    <div class="col-lg-1"><label for="date_from">Дата от</label></div>
+                    <div class="col-lg-2"><input type="date" class="form-control" id="date_from"
+                                                 value="{{ page_object.datefrom|slice:"0:10" }}"></div>
+                    <div class="col-lg-2"><input type="time" class="form-control" id="time_from"
+                                                 value="{{ page_object.datefrom|slice:"11:16" }}"></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-1"><label for="date_to">Дата до</label></div>
+                    <div class="col-lg-2"><input type="date" class="form-control" id="date_to"
+                                                 value="{{ page_object.dateto|slice:"0:10" }}"></div>
+                    <div class="col-lg-2"><input type="time" class="form-control" id="time_to"
+                                                 value="{{ page_object.dateto|slice:"11:16" }}"></div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="search-table">Текст</label>
+                    <input type="text" id="search-table" class="form-control"
+                           value="{{ page_object.search }}">
+                </div>
+                <button class="btn btn-primary" onclick="runSearch()">Поиск</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="">
+        <div class="table-wrapper">
+            <table table class="fixed_header">
+                <thead>
+                <tr>
+                    <th>
+                        <a href="{% url 'logproc' %}?page={{ page_object.number }}&sort={% if page_object.sort == 'seq_id' %}-{% endif %}seq_id&search={{ page_object.search }}&datefrom={{ page_object.datefrom }}&dateto={{ page_object.dateto }}">
+                            ID Log</a></th>
+                    <th>
+                        <a href="{% url 'logproc' %}?page={{ page_object.number }}&sort={% if page_object.sort == 'eventtime' %}-{% endif %}eventtime&search={{ page_object.search }}&datefrom={{ page_object.datefrom }}&dateto={{ page_object.dateto }}">
+                            Время события</a></th>
+                    <th>
+                        <a href="{% url 'logproc' %}?page={{ page_object.number }}&sort={% if page_object.sort == 'proc' %}-{% endif %}proc&search={{ page_object.search }}&datefrom={{ page_object.datefrom }}&dateto={{ page_object.dateto }}">
+                            Процедура</a></th>
+                    <th>
+                        <a href="{% url 'logproc' %}?page={{ page_object.number }}&sort={% if page_object.sort == 'err_code' %}-{% endif %}err_code&search={{ page_object.search }}&datefrom={{ page_object.datefrom }}&dateto={{ page_object.dateto }}">
+                            Код ошибки</a></th>
+                    <th>
+                        <a href="{% url 'logproc' %}?page={{ page_object.number }}&sort={% if page_object.sort == 'text' %}-{% endif %}text&search={{ page_object.search }}&datefrom={{ page_object.datefrom }}&dateto={{ page_object.dateto }}">
+                            Текст ошибки</a></th>
+                    <th>
+                        <a href="{% url 'logproc' %}?page={{ page_object.number }}&sort={% if page_object.sort == 'obj_id' %}-{% endif %}obj_id&search={{ page_object.search }}&datefrom={{ page_object.datefrom }}&dateto={{ page_object.dateto }}">
+                            Идентификатор объекта</a></th>
+                    <th>
+                        <a href="{% url 'logproc' %}?page={{ page_object.number }}&sort={% if page_object.sort == 'obj_type' %}-{% endif %}obj_type&search={{ page_object.search }}&datefrom={{ page_object.datefrom }}&dateto={{ page_object.dateto }}">
+                            Объект</a></th>
+                    <th>
+                        <a href="{% url 'logproc' %}?page={{ page_object.number }}&sort={% if page_object.sort == 'message_type' %}-{% endif %}message_type&search={{ page_object.search }}&datefrom={{ page_object.datefrom }}&dateto={{ page_object.dateto }}">
+                            Тип события</a></th>
+                    <th>
+                        <a href="{% url 'logproc' %}?page={{ page_object.number }}&sort={% if page_object.sort == 'err_dtl' %}-{% endif %}err_dtl&search={{ page_object.search }}&datefrom={{ page_object.datefrom }}&dateto={{ page_object.dateto }}">
+                            err_dtl</a></th>
+                    <th>
+                        <a href="{% url 'logproc' %}?page={{ page_object.number }}&sort={% if page_object.sort == 'err_hint' %}-{% endif %}err_hint&search={{ page_object.search }}&datefrom={{ page_object.datefrom }}&dateto={{ page_object.dateto }}">
+                            err_hint</a></th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for logpr in page_object %}
+                    <tr>
+                        <td>
+                            <div class="div-overflow">{{ logpr.seq_id }}</div>
+                        </td>
+                        <td>
+                            <div class="div-overflow">{{ logpr.eventtime |date:"d.m.Y H:i:sO" }}</div>
+                        </td>
+                        <td>
+                            <div class="div-overflow">{{ logpr.proc }}</div>
+                        </td>
+                        <td>
+                            <div class="div-overflow">{{ logpr.err_code }}</div>
+                        </td>
+                        <td>
+                            <div class="div-overflow">{{ logpr.text }}</div>
+                        </td>
+                        <td>
+                            <div class="div-overflow">{{ logpr.obj_id }}</div>
+                        </td>
+                        <td>
+                            <div class="div-overflow">{{ logpr.obj_type }}</div>
+                        </td>
+                        <td>
+                            <div class="div-overflow">{{ logpr.message_type }}</div>
+                        </td>
+                        <td>
+                            <div class="div-overflow">{{ logpr.err_dtl }}</div>
+                        </td>
+                        <td>
+                            <div class="div-overflow">{{ logpr.err_hint }}</div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+        <nav aria-label="Page navigation ">
+            <ul class="pagination pull-right">
+                {% if page_object.has_previous %}
+                    <li class="page-item"><a
+                            href="{% url 'logproc' %}?page={{ page_object.previous_page_number }}&sort={{ page_object.sort }}&search={{ page_object.search }}&datefrom={{ page_object.datefrom }}&dateto={{ page_object.dateto }}"
+                            class="page-link">
+                        Предыдущая
+                    </a></li>
+                {% endif %}
+
+                {% for page_number in page_object.adjusted_elided_pages %}
+                    {% if page_number == page_object.paginator.ELLIPSIS %}
+                        <li class="page-item">
+                            <span class="page-link"> {{ page_number }} </span>
+                        </li>
+                    {% else %}
+                        <li class="page-item {% if page_number == page_object.number %}active{% endif %}">
+                            <a href="{% url 'logproc' %}?page={{ page_number }}&sort={{ page_object.sort }}&search={{ page_object.search }}&datefrom={{ page_object.datefrom }}&dateto={{ page_object.dateto }}"
+                               class="page-link">
+                                {{ page_number }}
+                            </a></li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_object.has_next %}
+                    <li class="page-item"><a
+                            href="{% url 'logproc' %}?page={{ page_object.next_page_number }}&sort={{ page_object.sort }}&search={{ page_object.search }}&datefrom={{ page_object.datefrom }}&dateto={{ page_object.dateto }}"
+                            class="page-link">
+                        Следующая
+                    </a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        <p>Записи с {{ page_object.start_index }} до {{ page_object.end_index }}
+            (всего {{ page_object.paginator.count }})</p>
+
+    </div>
+
+
+
+{% endblock %}
+
+{% block scripts %}
+
+    <script defer type="text/javascript">
+
+        function runSearch() {
+            let search = document.getElementById("search-table").value;
+            let dateFrom = document.getElementById("date_from").value;
+            let timeFrom = document.getElementById("time_from").value;
+            let dateTo = document.getElementById("date_to").value;
+            let timeTo = document.getElementById("time_to").value;
+
+            let strFrom = dateFrom + " " + (timeFrom.length != 5 ? "00:00" : timeFrom);
+            let strTo = dateTo + " " + (timeTo.length != 5 ? "00:00" : timeTo);
+
+            if (search != null)
+                window.location = '{% url 'logproc'%}?page={{page_object.number}}&sort={{page_object.sort}}&search=' + search +
+                    '&datefrom=' + strFrom.trim() + "&dateto=" + strTo.trim();
+        }
+    </script>
+
+{% endblock scripts %}
