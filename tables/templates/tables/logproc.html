@@ -1,78 +1,68 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block css %}
     <link href={% static 'tables/css/styles.css' %} rel="stylesheet">
 {% endblock %}
 
 {% block content %}
-    <div class="panel-body">
-
-        <h2>Список событий</h2>
-
-        <div class="card_full_width">
-            <div class="card-body">
-                <h5 class="card-title">Фильтр</h5>
-                <div class="row">
-                    <div class="col-lg-1"><label for="date_from">Дата от</label></div>
-                    <div class="col-lg-2"><input type="date" class="form-control" id="date_from"
-                                                 value="{{ page_object.datefrom|slice:"0:10" }}"></div>
-                    <div class="col-lg-2"><input type="time" class="form-control" id="time_from"
-                                                 value="{{ page_object.datefrom|slice:"11:16" }}"></div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-1"><label for="date_to">Дата до</label></div>
-                    <div class="col-lg-2"><input type="date" class="form-control" id="date_to"
-                                                 value="{{ page_object.dateto|slice:"0:10" }}"></div>
-                    <div class="col-lg-2"><input type="time" class="form-control" id="time_to"
-                                                 value="{{ page_object.dateto|slice:"11:16" }}"></div>
-                </div>
-
-
-                <div class="form-group">
-                    <label for="search-table">Текст</label>
-                    <input type="text" id="search-table" class="form-control"
-                           value="{{ page_object.search }}">
-                </div>
-                <button class="btn btn-primary" onclick="runSearch()">Поиск</button>
-            </div>
-        </div>
+    <h1>Список событий</h1>
+    <div class="card">
+        <h2>Фильтр</h2>
+        <form method="GET">
+            {% render_field filters.form.eventtime class="form-field"%}
+            {% render_field filters.form.proc class="form-field" placeholder="Процедура"%}
+            {% render_field filters.form.text class="form-field" placeholder="Текст ошибки"%}
+            {% render_field filters.form.obj_type class="form-field" placeholder="Тип Объекта"%}
+            {% render_field filters.form.err_dtl class="form-field" placeholder="err_dtl"%}
+            <br>
+            <input type="submit" value="Поиск" name="Search" class="button-left">
+{#            class="form-control" placeholder="First Name" type="text"#}
+        </form>
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" name="export_csv" value="export_csv"
+                    class="button-right ">
+                Выгрузить в .csv
+            </button>
+        </form>
     </div>
 
-    <div class="">
+    <div class="card">
         <div class="table-wrapper">
-            <table table class="fixed_header">
+            <table>
                 <thead>
                 <tr>
                     <th>
-                        <a href="{% url 'logproc' %}?page={{ page_object.number }}&sort={% if page_object.sort == 'seq_id' %}-{% endif %}seq_id&search={{ page_object.search }}&datefrom={{ page_object.datefrom }}&dateto={{ page_object.dateto }}">
+                        <a>
                             ID Log</a></th>
                     <th>
-                        <a href="{% url 'logproc' %}?page={{ page_object.number }}&sort={% if page_object.sort == 'eventtime' %}-{% endif %}eventtime&search={{ page_object.search }}&datefrom={{ page_object.datefrom }}&dateto={{ page_object.dateto }}">
+                        <a>
                             Время события</a></th>
                     <th>
-                        <a href="{% url 'logproc' %}?page={{ page_object.number }}&sort={% if page_object.sort == 'proc' %}-{% endif %}proc&search={{ page_object.search }}&datefrom={{ page_object.datefrom }}&dateto={{ page_object.dateto }}">
+                        <a>
                             Процедура</a></th>
                     <th>
-                        <a href="{% url 'logproc' %}?page={{ page_object.number }}&sort={% if page_object.sort == 'err_code' %}-{% endif %}err_code&search={{ page_object.search }}&datefrom={{ page_object.datefrom }}&dateto={{ page_object.dateto }}">
+                        <a>
                             Код ошибки</a></th>
                     <th>
-                        <a href="{% url 'logproc' %}?page={{ page_object.number }}&sort={% if page_object.sort == 'text' %}-{% endif %}text&search={{ page_object.search }}&datefrom={{ page_object.datefrom }}&dateto={{ page_object.dateto }}">
+                        <a>
                             Текст ошибки</a></th>
                     <th>
-                        <a href="{% url 'logproc' %}?page={{ page_object.number }}&sort={% if page_object.sort == 'obj_id' %}-{% endif %}obj_id&search={{ page_object.search }}&datefrom={{ page_object.datefrom }}&dateto={{ page_object.dateto }}">
+                        <a>
                             Идентификатор объекта</a></th>
                     <th>
-                        <a href="{% url 'logproc' %}?page={{ page_object.number }}&sort={% if page_object.sort == 'obj_type' %}-{% endif %}obj_type&search={{ page_object.search }}&datefrom={{ page_object.datefrom }}&dateto={{ page_object.dateto }}">
+                        <a>
                             Объект</a></th>
                     <th>
-                        <a href="{% url 'logproc' %}?page={{ page_object.number }}&sort={% if page_object.sort == 'message_type' %}-{% endif %}message_type&search={{ page_object.search }}&datefrom={{ page_object.datefrom }}&dateto={{ page_object.dateto }}">
+                        <a>
                             Тип события</a></th>
                     <th>
-                        <a href="{% url 'logproc' %}?page={{ page_object.number }}&sort={% if page_object.sort == 'err_dtl' %}-{% endif %}err_dtl&search={{ page_object.search }}&datefrom={{ page_object.datefrom }}&dateto={{ page_object.dateto }}">
+                        <a>
                             err_dtl</a></th>
                     <th>
-                        <a href="{% url 'logproc' %}?page={{ page_object.number }}&sort={% if page_object.sort == 'err_hint' %}-{% endif %}err_hint&search={{ page_object.search }}&datefrom={{ page_object.datefrom }}&dateto={{ page_object.dateto }}">
+                        <a>
                             err_hint</a></th>
                 </tr>
                 </thead>
@@ -118,33 +108,33 @@
 
 
         <nav aria-label="Page navigation ">
-            <ul class="pagination pull-right">
+            <ul class="paginator">
                 {% if page_object.has_previous %}
-                    <li class="page-item"><a
+                    <li class="paginator__item"><a
                             href="{% url 'logproc' %}?page={{ page_object.previous_page_number }}&sort={{ page_object.sort }}&search={{ page_object.search }}&datefrom={{ page_object.datefrom }}&dateto={{ page_object.dateto }}"
-                            class="page-link">
+                            class="paginator__item-link">
                         Предыдущая
                     </a></li>
                 {% endif %}
 
                 {% for page_number in page_object.adjusted_elided_pages %}
                     {% if page_number == page_object.paginator.ELLIPSIS %}
-                        <li class="page-item">
-                            <span class="page-link"> {{ page_number }} </span>
+                        <li class="paginator__item">
+                            <span class="paginator__item-link"> {{ page_number }} </span>
                         </li>
                     {% else %}
-                        <li class="page-item {% if page_number == page_object.number %}active{% endif %}">
+                        <li class="paginator__item {% if page_number == page_object.number %}active{% endif %}">
                             <a href="{% url 'logproc' %}?page={{ page_number }}&sort={{ page_object.sort }}&search={{ page_object.search }}&datefrom={{ page_object.datefrom }}&dateto={{ page_object.dateto }}"
-                               class="page-link">
+                               class="paginator__item-link">
                                 {{ page_number }}
                             </a></li>
                     {% endif %}
                 {% endfor %}
 
                 {% if page_object.has_next %}
-                    <li class="page-item"><a
+                    <li class="paginator__item"><a
                             href="{% url 'logproc' %}?page={{ page_object.next_page_number }}&sort={{ page_object.sort }}&search={{ page_object.search }}&datefrom={{ page_object.datefrom }}&dateto={{ page_object.dateto }}"
-                            class="page-link">
+                            class="paginator__item-link">
                         Следующая
                     </a></li>
                 {% endif %}

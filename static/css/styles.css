@@ -1,57 +1,524 @@
+@font-face {
+  font-family: "MontserratTest";
+  font-weight: 100;
+  font-style: normal;
+  src: url(fonts-config/Montserrat-VariableFont_wght.ttf);
+}
+@font-face {
+  font-family: "MontserratTest2";
+  font-weight: 100;
+  font-style: normal;
+  src: url(Montserrat-VariableFont_wght.ttf);
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 100;
+  font-style: normal;
+  src: url("../fonts/Montserrat/static/Montserrat-Thin.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 100;
+  font-style: italic;
+  src: url("../fonts/Montserrat/static/Montserrat-ThinItalic.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 200;
+  font-style: normal;
+  src: url("../fonts/Montserrat/static/Montserrat-ExtraLight.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 200;
+  font-style: italic;
+  src: url("../fonts/Montserrat/static/Montserrat-ExtraLightItalic.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 300;
+  font-style: normal;
+  src: url("../fonts/Montserrat/static/Montserrat-Light.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 300;
+  font-style: italic;
+  src: url("../fonts/Montserrat/static/Montserrat-LightItalic.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: normal;
+  font-style: normal;
+  src: url("../fonts/Montserrat/static/Montserrat-Regular.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: normal;
+  font-style: italic;
+  src: url("../fonts/Montserrat/static/Montserrat-Italic.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: bold;
+  font-style: normal;
+  src: url("../fonts/Montserrat/static/Montserrat-Bold.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: bold;
+  font-style: italic;
+  src: url("../fonts/Montserrat/static/Montserrat-BoldItalic.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 500;
+  font-style: normal;
+  src: url("../fonts/Montserrat/static/Montserrat-Medium.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 500;
+  font-style: italic;
+  src: url("../fonts/Montserrat/static/Montserrat-MediumItalic.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-style: normal;
+  src: url("../fonts/Montserrat/static/Montserrat-SemiBold.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-style: italic;
+  src: url("../fonts/Montserrat/static/Montserrat-SemiBoldItalic.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 800;
+  font-style: normal;
+  src: url("../fonts/Montserrat/static/Montserrat-ExtraBold.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 800;
+  font-style: italic;
+  src: url("../fonts/Montserrat/static/Montserrat-ExtraBoldItalic.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 900;
+  font-style: normal;
+  src: url("../fonts/Montserrat/static/Montserrat-Black.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 900;
+  font-style: italic;
+  src: url("../fonts/Montserrat/static/Montserrat-BlackItalic.ttf");
+}
+@font-face {
+  font-family: "OpenSans";
+  font-weight: normal;
+  font-style: normal;
+  src: url("../fonts/OpenSans/static/OpenSans-Regular.ttf") format("ttf");
+}
+@font-face {
+  font-family: "OpenSans";
+  font-weight: bold;
+  font-style: normal;
+  src: url("../fonts/OpenSans/static/OpenSans-Bold.ttf") format("ttf");
+}
+@font-face {
+  font-family: "OpenSans";
+  font-weight: normal;
+  font-style: italic;
+  src: url("../fonts/OpenSans/static/OpenSans-Italic.ttf") format("ttf");
+}
+@font-face {
+  font-family: "OpenSans";
+  font-weight: bold;
+  font-style: italic;
+  src: url("../fonts/OpenSans/static/OpenSans-BoldItalic.ttf") format("ttf");
+}
+@font-face {
+  font-family: "OpenSans";
+  font-weight: 300;
+  font-style: normal;
+  src: url("../fonts/OpenSans/static/OpenSans-Light.ttf") format("ttf");
+}
+@font-face {
+  font-family: "OpenSans";
+  font-weight: 300;
+  font-style: italic;
+  src: url("../fonts/OpenSans/static/OpenSans-LightItalic.ttf") format("ttf");
+}
+@font-face {
+  font-family: "OpenSans";
+  font-weight: 500;
+  font-style: normal;
+  src: url("../fonts/OpenSans/static/OpenSans-Medium.ttf") format("ttf");
+}
+@font-face {
+  font-family: "OpenSans";
+  font-weight: 500;
+  font-style: italic;
+  src: url("../fonts/OpenSans/static/OpenSans-MediumItalic.ttf") format("ttf");
+}
+@font-face {
+  font-family: "OpenSans";
+  font-weight: 600;
+  font-style: normal;
+  src: url("../fonts/OpenSans/static/OpenSans-SemiBold.ttf") format("ttf");
+}
+@font-face {
+  font-family: "OpenSans";
+  font-weight: 600;
+  font-style: italic;
+  src: url("../fonts/OpenSans/static/OpenSans-SemiBoldItalic.ttf") format("ttf");
+}
+@font-face {
+  font-family: "OpenSans";
+  font-weight: 800;
+  font-style: normal;
+  src: url("../fonts/OpenSans/static/OpenSans-ExtraBold.ttf") format("ttf");
+}
+@font-face {
+  font-family: "OpenSans";
+  font-weight: 800;
+  font-style: italic;
+  src: url("../fonts/OpenSans/static/OpenSans-ExtraBoldItalic.ttf") format("ttf");
+}
+h1 {
+  color: #012649;
+  font-family: Montserrat, OpenSans, Ubuntu, sans-serif;
+  margin-top: 5px;
+}
+
 body {
-  font-family: "Lato", sans-serif;
-  background-color: #cfcfcf; }
+  font-family: Montserrat, OpenSans, Ubuntu, sans-serif;
+  color: #EDF5E1;
+  background-color: #d8fffe;
+}
+
+.navbar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: block;
+  height: 60px;
+  width: 100%;
+  padding: 0 20px 0 0;
+  z-index: 800;
+  background-color: #fff;
+  border-bottom: 1px solid rgba(230, 230, 230, 0.7);
+}
+
+.form-field {
+  width: 12vw;
+  padding: 5px 5px 5px 14px;
+  margin-right: 10px;
+  border-radius: 25px;
+  font-size: 16px;
+  transition: 0.2s;
+  font-family: Montserrat, OpenSans, Ubuntu, sans-serif;
+  font-weight: 600;
+  background-color: white;
+}
+.form-field:first-child {
+  margin-right: 0;
+}
+.form-field:focus {
+  border: 3px solid #555;
+}
 
 .sidebar {
+  top: 60px;
+  text-transform: uppercase;
   height: 100%;
   width: 74px;
   position: fixed;
   z-index: 1;
-  top: 0;
   left: 0;
-  background-color: #111;
+  background-color: #05386B;
   overflow-x: hidden;
-  transition: 0.3s;
+  transition: 0.2s;
   padding-top: 20px;
-  white-space: nowrap; }
-  @media screen and (max-width: 768px) {
-    .sidebar {
-      padding-top: 15px; } }
+  white-space: nowrap;
+  font-family: Montserrat, OpenSans, Ubuntu, sans-serif;
+}
+.sidebar:hover {
+  width: 280px;
+}
+@media screen and (max-width: 1200px) {
+  .sidebar:hover {
+    width: 210px;
+  }
+}
+@media screen and (max-width: 900px) {
+  .sidebar:hover {
+    width: 160px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .sidebar {
+    padding-top: 15px;
+  }
+  .sidebar:hover {
+    width: 130px;
+  }
+}
 
 .sidebar-link {
   padding: 3px 3px 3px 24px;
   text-decoration: none;
-  color: #d2d2d2;
+  color: #e6fff8;
   display: block;
-  transition: 0.1s; }
-  .sidebar-link:hover {
-    color: #f1f1f1; }
-  @media screen and (max-width: 1200px) {
-    .sidebar-link {
-      padding: 2px 2px 2px 24px; } }
-  @media screen and (max-width: 800px) {
-    .sidebar-link {
-      padding: 1px 1px 1px 22px; } }
+  transition: 0.1s;
+}
+.sidebar-link:hover {
+  color: #9fccf8;
+}
+@media screen and (max-width: 1200px) {
+  .sidebar-link {
+    padding: 2px 2px 2px 24px;
+  }
+}
+@media screen and (max-width: 800px) {
+  .sidebar-link {
+    padding: 1px 1px 1px 22px;
+  }
+}
 
 .material-icons,
 .icon-text {
-  margin-right: 50px;
+  margin-right: 35px;
   vertical-align: middle;
-  font-size: 18px; }
-  @media screen and (max-width: 1200px) {
-    .material-icons,
-    .icon-text {
-      margin-right: 36px;
-      font-size: 14px; } }
-  @media screen and (max-width: 800px) {
-    .material-icons,
-    .icon-text {
-      margin-right: 28px;
-      font-size: 11px; } }
+  font-size: 18px;
+}
+@media screen and (max-width: 1200px) {
+  .material-icons,
+  .icon-text {
+    margin-right: 36px;
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 800px) {
+  .material-icons,
+  .icon-text {
+    margin-right: 28px;
+    font-size: 11px;
+  }
+}
 
 .body {
-  transition: margin-left 0.3s;
   padding: 16px;
-  margin-left: 100px; }
+  margin-left: 74px;
+  font-family: Montserrat, OpenSans, Ubuntu, sans-serif;
+}
+
+.arrow {
+  vertical-align: bottom;
+}
+
+.button, .button-left, .button-right {
+  align-items: center;
+  background-color: #745df6;
+  border: 0;
+  border-radius: 100px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: Montserrat, Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: Bold;
+  justify-content: center;
+  line-height: 20px;
+  max-width: 480px;
+  min-height: 40px;
+  min-width: 0px;
+  overflow: hidden;
+  padding: 0px 20px;
+  text-align: center;
+  touch-action: manipulation;
+  transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.button:hover, .button-left:hover, .button-right:hover {
+  background-color: #43348a;
+  color: white;
+}
+.button:focus, .button-left:focus, .button-right:focus {
+  background-color: #43348a;
+  color: white;
+}
+.button:active, .button-left:active, .button-right:active {
+  background: #43348a;
+  color: rgba(255, 255, 255, 0.7);
+}
+.button:disabled, .button-left:disabled, .button-right:disabled {
+  cursor: not-allowed;
+  background: rgba(0, 0, 0, 0.08);
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.button-right {
+  float: right;
+}
+
+.button-left {
+  float: left;
+}
+
+.card {
+  display: inline-block;
+  width: 97%;
+  border-radius: 25px;
+  background: #012649;
+  padding: 20px;
+  box-shadow: 0 0 10px 1px #484848;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  font-family: Montserrat, OpenSans, Ubuntu, sans-serif;
+}
+
+.table-wrapper {
+  border-radius: 20px;
+}
+
+table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+table thead {
+  background: #012649;
+  color: #e6fff8;
+  position: sticky;
+}
+table thead tr {
+  z-index: 10;
+}
+table thead tr th {
+  padding: 5px;
+  border: 1px solid #012649;
+  top: 0;
+}
+table thead tr th a {
+  text-decoration: none;
+  color: #e6fff8;
+}
+table thead tr th a:link {
+  transition: 0.1s;
+  color: #c5e5e5;
+  transform: scale(11);
+  text-shadow: 2px 2px 10px #1f1f1f;
+}
+table thead tr th a:active {
+  transition: 0.1s;
+  color: #c5e5e5;
+  transform: scale(11);
+  text-shadow: 2px 2px 10px #1f1f1f;
+}
+table thead tr th a:hover {
+  transition: 0.1s;
+  color: #c5e5e5;
+  transform: scale(11);
+  text-shadow: 2px 2px 10px #1f1f1f;
+}
+table tbody {
+  color: #012649;
+}
+table tbody tr {
+  z-index: 0;
+}
+table tbody tr td {
+  background: white;
+  padding: 4px;
+  border: 1px solid #1b1b1b;
+}
+
+.div-overflow {
+  display: block;
+  width: 100%;
+  height: 80px;
+  overflow-y: scroll;
+}
+
+.table-wrapper {
+  margin: 0;
+  padding: 0;
+  display: block;
+  width: 100%;
+  overflow: auto;
+  height: 500px;
+}
+
+.paginator {
+  display: inline-block;
+  padding-left: 0;
+  margin: 20px 0;
+  border-radius: 25px;
+  box-shadow: 0 0 10px 1px #484848;
+  float: right !important;
+  background-color: white;
+}
+.paginator li {
+  display: inline;
+}
+
+.paginator__item-link {
+  position: relative;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  margin-left: -1px;
+  line-height: 1.25;
+  color: #012649;
+  background-color: #e6fff8;
+  border: 1px solid #dee2e6;
+  float: left;
+  text-decoration: none;
+}
+.paginator__item-link:hover {
+  transition: 0.2s;
+  z-index: 2;
+  color: #0056b3;
+  text-decoration: none;
+  background-color: #e9ecef;
+  border-color: #dee2e6;
+}
+.paginator__item-link:focus {
+  z-index: 2;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.paginator__item:first-child .paginator__item-link {
+  margin-left: 0;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+.paginator__item:last-child .paginator__item-link {
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+.paginator__item .active .paginator__item-link {
+  z-index: 1;
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+.paginator__item .disabled .paginator__item-link {
+  color: #6c757d;
+  pointer-events: none;
+  cursor: auto;
+  background-color: #fff;
+  border-color: #dee2e6;
+}
 
 /*# sourceMappingURL=styles.css.map */

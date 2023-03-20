@@ -18,72 +18,199 @@
 </head>
 <body>
 
+<div class="header " id="header">
+    <div class="container-fluid relative">
+        <div class="pull-left full-height visible-sm visible-xs">
+            <div class="header-inner">
+                <a href="#"
+                   class="btn-link toggle-sidebar visible-sm-inline-block visible-xs-inline-block padding-5"
+                   data-toggle="sidebar">
+                    <span class="icon-set menu-hambuger"></span>
+                </a>
+            </div>
+        </div>
+        <div class="pull-center hidden-md hidden-lg">
+            <div class="header-inner">
+                <div class="brand inline">
+                    <a href={% url 'index' %}>
+                        <img src={% static '/img/logo.png' %} alt="logo" data-src={% static '/img/logo.png' %}
+                                data-src-retina={% static '/img/logo_2x.png' %}
+                             width="133" height="37">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class=" pull-left sm-table hidden-xs hidden-sm">
+        <div class="header-inner">
+            <div class="brand inline">
+                <a href={% url 'index' %}>
+                    <img src={% static '/img/logo.png' %} alt="logo"
+                         data-src={% static '/img/logo.png' %}
+                                 data-src-retina={% static '/img/logo_2x.png' %}
+                         width="133" height="37">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <ul class="nav navbar-nav navbar-right visible-lg visible-md  m-t-10">
+        {% if formuserfacility != "" %}
+            <li class="m-r-20">
+                <form class="form-inline" method="POST" action="facilityselectwebuser/">
+                    <div class="form-group">
+                        {% csrf_token %}
+                        {% for field in formuserfacility %}
+
+                            {{ field }}
+
+                        {% endfor %}
+                    </div>
+                </form>
+            </li>
+        {% endif %}
+        <li>
+
+            <div class="dropdown pull-right">
+                <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false">
+
+                    <div class="pull-left p-r-10 p-t-5 fs-15 font-heading">
+                        {% if user.is_authenticated %}
+                            <span class="semi-bold">{{ user.first_name }} {{ user.last_name }}</span>
+                        {% else %}
+                            <span class="semi-bold">Для авторизации нажмите на картинку</span>
+                        {% endif %}
+                    </div>
+
+                    <span class="thumbnail-wrapper d32 circular inline">
+                    {% if user.is_authenticated %}
+                        {% if user.avatar != '' %}
+                            <img src="/media/{{ user.avatar }}" alt="" data-src="/media/{{ user.avatar }}"
+                                 data-src-retina="/media/{{ user.avatar }}" width="32" height="32">
+                        {% else %}
+                            <img src="/static/img/profiles/avatar.jpg" alt=""
+                                 data-src="/static/img/profiles/avatar.jpg"
+                                 data-src-retina="/static/img/profiles/avatar.jpg" width="32" height="32">
+                        {% endif %}
+                    {% else %}
+                        <img src="/static/img/profiles/avatar.jpg" alt=""
+                             data-src="/static/img/profiles/avatar.jpg"
+                             data-src-retina="/static/img/profiles/avatar.jpg" width="32" height="32">
+                    {% endif %}
+                    </span>
+                </button>
+                <ul class="dropdown-menu profile-dropdown" role="menu">
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'mainapp:userprofile' %}"><i class="pg-settings_small"></i>Профиль</a>
+                        </li>
+                        <li><a href="#"><i class="pg-laptop"></i>Роль: Монитринг</a></li>
+                        <li class="bg-master-lighter">
+                            <a href="{% url 'auth:logout' %}" class="clearfix">
+                                <span class="pull-left">Выход</span>
+                                <span class="pull-right"><i class="pg-power"></i></span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li><a href="#"><i class="pg-settings_small"></i>Профиль</a></li>
+                        <li><a href="#"><i class="pg-cupboard"></i>Роль: Монитринг</a></li>
+                        <li class="bg-master-lighter">
+                            <a href="{% url 'auth:login' %}" class="clearfix">
+                                <span class="pull-left">Войти</span>
+                                <span class="pull-right"><i class="pg-power"></i></span>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </li>
+    </ul>
+
+
+</div>
 
 <div id="sidebar" class="sidebar">
-    <a href="#" class="sidebar-link">
+    <div class="sidebar__container">
+
+    </div>
+    <a href={% url 'index' %} class="sidebar-link">
         <span class="material-icons">home</span>
         <span class="icon-text">домашняя</span>
     </a>
     <br>
     <a href="#" class="sidebar-link">
         <span class="material-icons">history</span>
-        <span class="icon-text">логирование</span>
-        <span class="material-icons-round">chevron_right</span>
+        <span class="icon-text">логирование
+            <i class="material-icons-round arrow">chevron_right</i>
+        </span>
     </a>
     <br>
     <a href="#" class="sidebar-link">
         <i class="material-icons">smartphone</i>
-        <span class="icon-text">оборудование</span>
-        <span class="material-icons-round">chevron_right</span>
+        <span class="icon-text">оборудование
+            <i class="material-icons-round arrow">chevron_right</i>
+        </span>
+
 
     </a>
     <br>
     <a href="#" class="sidebar-link">
         <i class="material-icons">people</i>
-        <span class="icon-text">персонал</span>
-        <span class="material-icons-round">chevron_right</span>
+        <span class="icon-text">персонал
+            <i class="material-icons-round arrow">chevron_right</i>
+        </span>
+
 
     </a>
     <br>
     <a href="#" class="sidebar-link">
         <i class="material-icons">warehouse</i>
-        <span class="icon-text">склад</span>
-        <span class="material-icons-round">chevron_right</span>
+        <span class="icon-text">склад
+            <i class="material-icons-round arrow">chevron_right</i>
+        </span>
+
 
     </a>
     <br>
     <a href="#" class="sidebar-link">
         <i class="material-icons">local_shipping</i>
-        <span class="icon-text">логистика</span>
-        <span class="material-icons-round">chevron_right</span>
+        <span class="icon-text">логистика
+            <i class="material-icons-round arrow">chevron_right</i>
+        </span>
+
 
     </a>
     <br>
     <a href="#" class="sidebar-link">
         <i class="material-icons">person_pin</i>
-        <span class="icon-text">пользователи</span>
-        <span class="material-icons-round">chevron_right</span>
-
+        <span class="icon-text">пользователи
+            <i class="material-icons-round arrow">chevron_right</i>
+        </span>
     </a>
     <br>
     <a href="#" class="sidebar-link">
         <i class="material-icons">print</i>
-        <span class="icon-text">печать</span>
-        <span class="material-icons-round">chevron_right</span>
+        <span class="icon-text">печать
+            <i class="material-icons-round arrow">chevron_right</i>
+        </span>
 
     </a>
     <br>
     <a href="#" class="sidebar-link">
         <i class="material-icons">summarize</i>
-        <span class="icon-text">отчеты</span>
-        <span class="material-icons-round">chevron_right</span>
+        <span class="icon-text">отчеты
+            <i class="material-icons-round arrow">chevron_right</i>
+        </span>
+
 
     </a>
     <br>
     <a href="#" class="sidebar-link">
         <i class="material-icons">category</i>
-        <span class="icon-text">сортировка</span>
-        <span class="material-icons-round">chevron_right</span>
+        <span class="icon-text">сортировка
+            <i class="material-icons-round arrow">chevron_right</i>
+        </span>
 
     </a>
 </div>
@@ -94,7 +221,7 @@
     {% endblock %}
 </div>
 
-<script defer src="{% static 'js/scripts.js' %}"></script>
+{#<script defer src="{% static 'js/scripts.js' %}"></script>#}
 
 {% block scripts %}
 

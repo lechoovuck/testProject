@@ -4,5 +4,5 @@ from .views import *
 
 urlpatterns = [
     path('', index, name='index'),
-    path('logproc', logproc, name='logproc'),
+    path('logproc/', log_proc, name='logproc'),
 ]

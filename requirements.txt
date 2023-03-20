@@ -1,5 +1,10 @@
+anytree==2.8.0
 asgiref==3.6.0
 Django==4.1.7
+django-filter==22.1
 django-postgres-copy==2.7.2
 django-tables2==2.5.3
+django-widget-tweaks==1.4.12
+psycopg2-binary==2.9.5
+six==1.16.0
 sqlparse==0.4.3

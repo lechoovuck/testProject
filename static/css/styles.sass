@@ -1,32 +1,93 @@
+@use 'typography'
+@use 'colors'
+@include typography.fonts
+
+h1
+  color: colors.$dark
+  font-family: Montserrat, OpenSans, Ubuntu, sans-serif
+  margin-top: 5px
+
+
 body
-  font-family: "Lato", sans-serif
-  background-color: #cfcfcf
+  font-family: Montserrat, OpenSans, Ubuntu, sans-serif
+  color: #EDF5E1
+  background-color: colors.$background
+
+
+.navbar
+  position: fixed
+  left: 0
+  top: 0
+  display: block
+  height: 60px
+  width: 100%
+  padding: 0 20px 0 0
+  z-index: 800
+  background-color: #fff
+  border-bottom: 1px solid rgba(230, 230, 230, 0.7)
+
+
+
+
+.form-field
+  width: 12vw
+  padding: 5px 5px 5px 14px
+  margin-right: 10px
+  border-radius: 25px
+  font-size: 16px
+  transition: 0.2s
+  font-family: Montserrat, OpenSans, Ubuntu, sans-serif
+  font-weight: 600
+  background-color: white
+
+  &:first-child
+    margin-right: 0
+
+  &:focus
+    border: 3px solid #555
+
 
 .sidebar
+  top: 60px
+  text-transform: uppercase
   height: 100%
   width: 74px
   position: fixed
   z-index: 1
-  top: 0
   left: 0
-  background-color: #111
+  background-color: #05386B
   overflow-x: hidden
-  transition: 0.3s
+  transition: 0.2s
   padding-top: 20px
   white-space: nowrap
+  font-family: Montserrat, OpenSans, Ubuntu, sans-serif
+
+  &:hover
+    width: 280px
+
+  @media screen and (max-width: 1200px)
+    &:hover
+      width: 210px
+
+  @media screen and (max-width: 900px)
+    &:hover
+      width: 160px
 
   @media screen and (max-width: 768px)
     padding-top: 15px
+    &:hover
+      width: 130px
+
 
 .sidebar-link
   padding: 3px 3px 3px 24px
   text-decoration: none
-  color: #d2d2d2
+  color: colors.$font
   display: block
   transition: 0.1s
 
   &:hover
-    color: #f1f1f1
+    color: colors.$font-hover
 
   @media screen and (max-width: 1200px)
     padding: 2px 2px 2px 24px
@@ -35,7 +96,7 @@ body
 
 .material-icons,
 .icon-text
-  margin-right: 50px
+  margin-right: 35px
   vertical-align: middle
   font-size: 18px
 
@@ -49,6 +110,215 @@ body
 
 
 .body
-  transition: margin-left .3s
   padding: 16px
-  margin-left: 100px
+  margin-left: 74px
+  font-family: Montserrat, OpenSans, Ubuntu, sans-serif
+
+.arrow
+  vertical-align: bottom
+
+.button
+  align-items: center
+  background-color: colors.$accent
+  border: 0
+  border-radius: 100px
+  box-sizing: border-box
+  color: #ffffff
+  cursor: pointer
+  font-family: Montserrat, Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif
+  font-size: 16px
+  font-weight: Bold
+  justify-content: center
+  line-height: 20px
+  max-width: 480px
+  min-height: 40px
+  min-width: 0px
+  overflow: hidden
+  padding: 0px 20px
+  text-align: center
+  touch-action: manipulation
+  transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s
+  user-select: none
+  -webkit-user-select: none
+  vertical-align: middle
+  margin-top: 5px
+  margin-bottom: 5px
+
+
+  &:hover
+    background-color: colors.$hover-button
+    color: white
+
+  &:focus
+    background-color: colors.$hover-button
+    color: white
+
+
+  &:active
+    background: colors.$hover-button
+    color: rgb(255, 255, 255, .7)
+
+
+  &:disabled
+    cursor: not-allowed
+    background: rgba(0, 0, 0, .08)
+    color: rgba(0, 0, 0, .3)
+
+.button-right
+  @extend .button
+  float: right
+
+.button-left
+  @extend .button
+  float: left
+
+.card
+  display: inline-block
+  width: 97%
+  border-radius: 25px
+  background: colors.$dark
+  padding: 20px
+  box-shadow: 0 0 10px 1px colors.$shadow
+  margin-bottom: 20px
+  margin-top: 20px
+  font-family: Montserrat, OpenSans, Ubuntu, sans-serif
+
+
+.table-wrapper
+  border-radius: 20px
+
+table
+  width: 100%
+  table-layout: fixed
+  border-collapse: collapse
+
+  thead
+    background: colors.$dark
+    color: colors.$font
+    position: sticky
+
+    tr
+      z-index: 10
+
+      th
+        padding: 5px
+        border: 1px solid colors.$dark
+
+        top: 0
+
+        a
+          text-decoration: none
+          color: colors.$font
+
+          &:link
+            transition: 0.1s
+            color: #c5e5e5
+            transform: scale(11)
+            text-shadow: 2px 2px 10px #1f1f1f
+
+          &:active
+            transition: 0.1s
+            color: #c5e5e5
+            transform: scale(11)
+            text-shadow: 2px 2px 10px #1f1f1f
+
+          &:hover
+            transition: 0.1s
+            color: #c5e5e5
+            transform: scale(11)
+            text-shadow: 2px 2px 10px #1f1f1f
+
+  tbody
+    color: colors.$dark
+
+    tr
+      z-index: 0
+
+      td
+        background: white
+        padding: 4px
+        border: 1px solid #1b1b1b
+
+.div-overflow
+  display: block
+  width: 100%
+  height: 80px
+  overflow-y: scroll
+
+
+.table-wrapper
+  margin: 0
+  padding: 0
+  display: block
+  width: 100%
+  overflow: auto
+  height: 500px
+
+.paginator
+  display: inline-block
+  padding-left: 0
+  margin: 20px 0
+  border-radius: 25px
+  box-shadow: 0 0 10px 1px #484848
+  float: right !important
+  background-color: white
+
+  li
+    display: inline
+
+.paginator__item-link
+  position: relative
+  display: block
+  padding: .5rem .75rem
+  margin-left: -1px
+  line-height: 1.25
+  color: colors.$dark
+  background-color: colors.$font
+  border: 1px solid #dee2e6
+  float: left
+  text-decoration: none
+
+  &:hover
+    transition: 0.2s
+    z-index: 2
+    color: #0056b3
+    text-decoration: none
+    background-color: #e9ecef
+    border-color: #dee2e6
+
+
+  &:focus
+    z-index: 2
+    outline: 0
+    box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25)
+
+
+.paginator__item
+  &:first-child
+    .paginator__item-link
+      margin-left: 0
+      border-top-left-radius: 25px
+      border-bottom-left-radius: 25px
+
+  &:last-child
+    .paginator__item-link
+      border-top-right-radius: 25px
+      border-bottom-right-radius: 25px
+
+  .active
+    .paginator__item-link
+      z-index: 1
+      color: #fff
+      background-color: #007bff
+      border-color: #007bff
+
+
+  .disabled
+    .paginator__item-link
+      color: #6c757d
+      pointer-events: none
+      cursor: auto
+      background-color: #fff
+      border-color: #dee2e6
+
+
