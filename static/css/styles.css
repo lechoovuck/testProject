@@ -198,7 +198,7 @@ h1 {
 
 body {
   font-family: Montserrat, OpenSans, Ubuntu, sans-serif;
-  color: #EDF5E1;
+  color: #d8fffe;
   background-color: #d8fffe;
 }
 
@@ -223,7 +223,7 @@ body {
   font-size: 16px;
   transition: 0.2s;
   font-family: Montserrat, OpenSans, Ubuntu, sans-serif;
-  font-weight: 600;
+  font-weight: 400;
   background-color: white;
 }
 .form-field:first-child {
@@ -313,6 +313,7 @@ body {
 }
 
 .body {
+  margin-top: 60px;
   padding: 16px;
   margin-left: 74px;
   font-family: Montserrat, OpenSans, Ubuntu, sans-serif;
@@ -389,6 +390,7 @@ body {
 
 .table-wrapper {
   border-radius: 20px;
+  height: 70vh;
 }
 
 table {
@@ -507,18 +509,22 @@ table tbody tr td {
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
 }
-.paginator__item .active .paginator__item-link {
-  z-index: 1;
-  color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
-}
 .paginator__item .disabled .paginator__item-link {
   color: #6c757d;
   pointer-events: none;
   cursor: auto;
-  background-color: #fff;
+  background-color: white;
   border-color: #dee2e6;
+}
+
+.paginator__item.active .paginator__item-link {
+  z-index: 1;
+  color: white;
+  background-color: #745df6;
+  border-color: #43348a;
+}
+.paginator__item.active:hover {
+  background-color: #43348a;
 }
 
 /*# sourceMappingURL=styles.css.map */

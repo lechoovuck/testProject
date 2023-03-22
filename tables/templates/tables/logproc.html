@@ -111,7 +111,7 @@
             <ul class="paginator">
                 {% if page_object.has_previous %}
                     <li class="paginator__item"><a
-                            href="{% url 'logproc' %}?page={{ page_object.previous_page_number }}&sort={{ page_object.sort }}&search={{ page_object.search }}&datefrom={{ page_object.datefrom }}&dateto={{ page_object.dateto }}"
+                            href="?page={{ page_object.previous_page_number }}"
                             class="paginator__item-link">
                         Предыдущая
                     </a></li>
@@ -124,7 +124,7 @@
                         </li>
                     {% else %}
                         <li class="paginator__item {% if page_number == page_object.number %}active{% endif %}">
-                            <a href="{% url 'logproc' %}?page={{ page_number }}&sort={{ page_object.sort }}&search={{ page_object.search }}&datefrom={{ page_object.datefrom }}&dateto={{ page_object.dateto }}"
+                            <a href="?page={{ page_number }}"
                                class="paginator__item-link">
                                 {{ page_number }}
                             </a></li>
@@ -133,7 +133,7 @@
 
                 {% if page_object.has_next %}
                     <li class="paginator__item"><a
-                            href="{% url 'logproc' %}?page={{ page_object.next_page_number }}&sort={{ page_object.sort }}&search={{ page_object.search }}&datefrom={{ page_object.datefrom }}&dateto={{ page_object.dateto }}"
+                            href="?page={{ page_object.next_page_number }}"
                             class="paginator__item-link">
                         Следующая
                     </a></li>
@@ -151,22 +151,5 @@
 
 {% block scripts %}
 
-    <script defer type="text/javascript">
-
-        function runSearch() {
-            let search = document.getElementById("search-table").value;
-            let dateFrom = document.getElementById("date_from").value;
-            let timeFrom = document.getElementById("time_from").value;
-            let dateTo = document.getElementById("date_to").value;
-            let timeTo = document.getElementById("time_to").value;
-
-            let strFrom = dateFrom + " " + (timeFrom.length != 5 ? "00:00" : timeFrom);
-            let strTo = dateTo + " " + (timeTo.length != 5 ? "00:00" : timeTo);
-
-            if (search != null)
-                window.location = '{% url 'logproc'%}?page={{page_object.number}}&sort={{page_object.sort}}&search=' + search +
-                    '&datefrom=' + strFrom.trim() + "&dateto=" + strTo.trim();
-        }
-    </script>
 
 {% endblock scripts %}

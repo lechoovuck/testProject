@@ -12,12 +12,9 @@ from tables.models import LogProc
 
 def get_param_with_default(request, key, default):
     if key in request.GET:
-        page = request.GET[key]
-        if page == "":
-            page = default
+        return default if request.GET[key] == '' else request.GET[key]
     else:
-        page = default
-    return page
+        return default
 
 
 def index(request):
@@ -30,9 +27,9 @@ def log_proc(request):
     context = dict()
     sort = get_param_with_default(request, "sort", "-seq_id")
     page = get_param_with_default(request, "page", 1)
-    datefrom = get_param_with_default(request, "datefrom",
+    date_from = get_param_with_default(request, "datefrom",
                                       (timezone.now() - timezone.timedelta(1)).strftime("%Y-%m-%d %H:%M"))
-    dateto = get_param_with_default(request, "dateto",
+    date_to = get_param_with_default(request, "dateto",
                                     (timezone.now() + timezone.timedelta(1)).strftime("%Y-%m-%d %H:%M"))
 
     title = 'Логирование',
@@ -52,8 +49,8 @@ def log_proc(request):
     page_object = paginator.get_page(page)
     page_object.adjusted_elided_pages = paginator.get_elided_page_range(page)
     page_object.sort = sort
-    page_object.datefrom = datefrom
-    page_object.dateto = dateto
+    page_object.date_from = date_from
+    page_object.date_to = date_to
 
     context.update({
         'title': title,
@@ -61,6 +58,7 @@ def log_proc(request):
         'page_object': page_object,
         'breadcrumb': get_bread_crumb('mainapp:logproc')
     })
+
     if request.method == 'POST' and request.POST.get("export_csv") == 'export_csv':
         response = HttpResponse(content_type='text/csv')
         response['Content-Disposition'] = 'attachment; filename=data.csv'

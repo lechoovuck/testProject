@@ -10,7 +10,7 @@ h1
 
 body
   font-family: Montserrat, OpenSans, Ubuntu, sans-serif
-  color: #EDF5E1
+  color: colors.$background
   background-color: colors.$background
 
 
@@ -37,7 +37,7 @@ body
   font-size: 16px
   transition: 0.2s
   font-family: Montserrat, OpenSans, Ubuntu, sans-serif
-  font-weight: 600
+  font-weight: 400
   background-color: white
 
   &:first-child
@@ -55,7 +55,7 @@ body
   position: fixed
   z-index: 1
   left: 0
-  background-color: #05386B
+  background-color: colors.$sidebar-background
   overflow-x: hidden
   transition: 0.2s
   padding-top: 20px
@@ -110,6 +110,7 @@ body
 
 
 .body
+  margin-top: 60px
   padding: 16px
   margin-left: 74px
   font-family: Montserrat, OpenSans, Ubuntu, sans-serif
@@ -186,6 +187,7 @@ body
 
 .table-wrapper
   border-radius: 20px
+  height: 70vh
 
 table
   width: 100%
@@ -305,20 +307,21 @@ table
       border-top-right-radius: 25px
       border-bottom-right-radius: 25px
 
-  .active
-    .paginator__item-link
-      z-index: 1
-      color: #fff
-      background-color: #007bff
-      border-color: #007bff
-
-
   .disabled
     .paginator__item-link
       color: #6c757d
       pointer-events: none
       cursor: auto
-      background-color: #fff
+      background-color: white
       border-color: #dee2e6
 
 
+.paginator__item.active
+    .paginator__item-link
+      z-index: 1
+      color: white
+      background-color: colors.$accent
+      border-color: colors.$hover-button
+
+    &:hover
+      background-color: colors.$hover-button
