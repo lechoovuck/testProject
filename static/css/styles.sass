@@ -7,6 +7,10 @@ h1
   font-family: Montserrat, OpenSans, Ubuntu, sans-serif
   margin-top: 5px
 
+h2, h3
+  color: white
+  font-family: Montserrat, OpenSans, Ubuntu, sans-serif
+  margin-top: 5px
 
 body
   font-family: Montserrat, OpenSans, Ubuntu, sans-serif
@@ -25,8 +29,6 @@ body
   z-index: 800
   background-color: #fff
   border-bottom: 1px solid rgba(230, 230, 230, 0.7)
-
-
 
 
 .form-field
@@ -61,6 +63,8 @@ body
   padding-top: 20px
   white-space: nowrap
   font-family: Montserrat, OpenSans, Ubuntu, sans-serif
+  box-shadow: 0 0 10px 1px colors.$shadow
+
 
   &:hover
     width: 280px
@@ -95,6 +99,7 @@ body
     padding: 1px 1px 1px 22px
 
 .material-icons,
+.material-icons-round,
 .icon-text
   margin-right: 35px
   vertical-align: middle
@@ -115,8 +120,14 @@ body
   margin-left: 74px
   font-family: Montserrat, OpenSans, Ubuntu, sans-serif
 
-.arrow
+.arrow-sidebar
   vertical-align: bottom
+  left: 1px
+
+.arrow-sort
+  display: block
+  position: absolute
+  z-index: 0
 
 .button
   align-items: center
@@ -205,30 +216,24 @@ table
       th
         padding: 5px
         border: 1px solid colors.$dark
-
+        z-index: 100
         top: 0
 
         a
+          position: relative
           text-decoration: none
-          color: colors.$font
-
-          &:link
-            transition: 0.1s
-            color: #c5e5e5
-            transform: scale(11)
-            text-shadow: 2px 2px 10px #1f1f1f
-
-          &:active
-            transition: 0.1s
-            color: #c5e5e5
-            transform: scale(11)
-            text-shadow: 2px 2px 10px #1f1f1f
+          color: white
 
           &:hover
             transition: 0.1s
-            color: #c5e5e5
-            transform: scale(11)
+            color: colors.$accent
             text-shadow: 2px 2px 10px #1f1f1f
+
+        a.active
+          transition: 0.1s
+          color: colors.$accent
+          transform: scale(11)
+          text-shadow: 2px 2px 10px #1f1f1f
 
   tbody
     color: colors.$dark
@@ -261,7 +266,7 @@ table
   padding-left: 0
   margin: 20px 0
   border-radius: 25px
-  box-shadow: 0 0 10px 1px #484848
+  border-color: colors.$dark
   float: right !important
   background-color: white
 
@@ -313,15 +318,14 @@ table
       pointer-events: none
       cursor: auto
       background-color: white
-      border-color: #dee2e6
+      border-color: colors.$dark
 
 
 .paginator__item.active
-    .paginator__item-link
-      z-index: 1
-      color: white
-      background-color: colors.$accent
-      border-color: colors.$hover-button
+  .paginator__item-link
+    z-index: 1
+    color: white
+    background-color: colors.$accent
 
-    &:hover
-      background-color: colors.$hover-button
+  &:hover
+    background-color: colors.$hover-button

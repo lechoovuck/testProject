@@ -196,6 +196,12 @@ h1 {
   margin-top: 5px;
 }
 
+h2, h3 {
+  color: white;
+  font-family: Montserrat, OpenSans, Ubuntu, sans-serif;
+  margin-top: 5px;
+}
+
 body {
   font-family: Montserrat, OpenSans, Ubuntu, sans-serif;
   color: #d8fffe;
@@ -247,6 +253,7 @@ body {
   padding-top: 20px;
   white-space: nowrap;
   font-family: Montserrat, OpenSans, Ubuntu, sans-serif;
+  box-shadow: 0 0 10px 1px #000000;
 }
 .sidebar:hover {
   width: 280px;
@@ -292,6 +299,7 @@ body {
 }
 
 .material-icons,
+.material-icons-round,
 .icon-text {
   margin-right: 35px;
   vertical-align: middle;
@@ -299,6 +307,7 @@ body {
 }
 @media screen and (max-width: 1200px) {
   .material-icons,
+  .material-icons-round,
   .icon-text {
     margin-right: 36px;
     font-size: 14px;
@@ -306,6 +315,7 @@ body {
 }
 @media screen and (max-width: 800px) {
   .material-icons,
+  .material-icons-round,
   .icon-text {
     margin-right: 28px;
     font-size: 11px;
@@ -319,8 +329,15 @@ body {
   font-family: Montserrat, OpenSans, Ubuntu, sans-serif;
 }
 
-.arrow {
+.arrow-sidebar {
   vertical-align: bottom;
+  left: 1px;
+}
+
+.arrow-sort {
+  display: block;
+  position: absolute;
+  z-index: 0;
 }
 
 .button, .button-left, .button-right {
@@ -382,7 +399,7 @@ body {
   border-radius: 25px;
   background: #012649;
   padding: 20px;
-  box-shadow: 0 0 10px 1px #484848;
+  box-shadow: 0 0 10px 1px #000000;
   margin-bottom: 20px;
   margin-top: 20px;
   font-family: Montserrat, OpenSans, Ubuntu, sans-serif;
@@ -409,27 +426,22 @@ table thead tr {
 table thead tr th {
   padding: 5px;
   border: 1px solid #012649;
+  z-index: 100;
   top: 0;
 }
 table thead tr th a {
+  position: relative;
   text-decoration: none;
-  color: #e6fff8;
-}
-table thead tr th a:link {
-  transition: 0.1s;
-  color: #c5e5e5;
-  transform: scale(11);
-  text-shadow: 2px 2px 10px #1f1f1f;
-}
-table thead tr th a:active {
-  transition: 0.1s;
-  color: #c5e5e5;
-  transform: scale(11);
-  text-shadow: 2px 2px 10px #1f1f1f;
+  color: white;
 }
 table thead tr th a:hover {
   transition: 0.1s;
-  color: #c5e5e5;
+  color: #745df6;
+  text-shadow: 2px 2px 10px #1f1f1f;
+}
+table thead tr th a.active {
+  transition: 0.1s;
+  color: #745df6;
   transform: scale(11);
   text-shadow: 2px 2px 10px #1f1f1f;
 }
@@ -466,7 +478,7 @@ table tbody tr td {
   padding-left: 0;
   margin: 20px 0;
   border-radius: 25px;
-  box-shadow: 0 0 10px 1px #484848;
+  border-color: #012649;
   float: right !important;
   background-color: white;
 }
@@ -514,14 +526,13 @@ table tbody tr td {
   pointer-events: none;
   cursor: auto;
   background-color: white;
-  border-color: #dee2e6;
+  border-color: #012649;
 }
 
 .paginator__item.active .paginator__item-link {
   z-index: 1;
   color: white;
   background-color: #745df6;
-  border-color: #43348a;
 }
 .paginator__item.active:hover {
   background-color: #43348a;

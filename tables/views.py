@@ -14,19 +14,24 @@ def index(request):
     return render(request, 'tables/index.html', {'title': 'tables'})
 
 
+global prev_order
+
+
 # @login_required
 # @permission_required('mainapp.view_logproc', login_url='mainapp:main')
 def log_proc(request):
+    print(dict(request.GET.dict()))
     context = dict()
     page = request.GET.get("page", 1)
 
     title = 'Логирование'
     logproc = LogProc.objects.all()
+    order_by = request.GET.get('orderby', '-seq_id')
 
     filters = ProcessLogFilter(request.GET, queryset=logproc)
     context['filters'] = filters
 
-    paginator = Paginator(filters.qs, per_page=30)
+    paginator = Paginator(filters.qs.order_by(order_by), per_page=30)
 
     if int(page) > paginator.num_pages:
         page = paginator.num_pages
@@ -37,7 +42,8 @@ def log_proc(request):
     context.update({
         'title': title,
         'page_object': page_object,
-        'breadcrumb': get_bread_crumb('mainapp:logproc')
+        'breadcrumb': get_bread_crumb('mainapp:logproc'),
+        'order_by': order_by
     })
 
     if request.method == 'POST' and request.POST.get("export_csv") == 'export_csv':
