@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load widget_tweaks %}
+{% load tables_extras %}
 
 {% block css %}
     <link href={% static 'tables/css/styles.css' %} rel="stylesheet">
@@ -17,8 +18,9 @@
             {% render_field filters.form.obj_type class="form-field" placeholder="Тип Объекта"%}
             {% render_field filters.form.err_dtl class="form-field" placeholder="err_dtl"%}
             <br>
-            <input type="submit" value="Поиск" name="Search" class="button-left">
-{#            class="form-control" placeholder="First Name" type="text"#}
+            <button type="submit" class="button-left">
+                Поиск
+            </button>
         </form>
         <form method="POST">
             {% csrf_token %}
@@ -111,7 +113,7 @@
             <ul class="paginator">
                 {% if page_object.has_previous %}
                     <li class="paginator__item"><a
-                            href="?page={{ page_object.previous_page_number }}"
+                            href="{% url_link page_object.previous_page_number 'page' request.GET.urlencode %}"
                             class="paginator__item-link">
                         Предыдущая
                     </a></li>
@@ -124,7 +126,7 @@
                         </li>
                     {% else %}
                         <li class="paginator__item {% if page_number == page_object.number %}active{% endif %}">
-                            <a href="?page={{ page_number }}"
+                            <a href="{% url_link page_number 'page' request.GET.urlencode %}"
                                class="paginator__item-link">
                                 {{ page_number }}
                             </a></li>
@@ -133,7 +135,7 @@
 
                 {% if page_object.has_next %}
                     <li class="paginator__item"><a
-                            href="?page={{ page_object.next_page_number }}"
+                            href= "{% url_link page_object.next_page_number 'page' request.GET.urlencode %}"
                             class="paginator__item-link">
                         Следующая
                     </a></li>

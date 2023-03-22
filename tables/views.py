@@ -10,13 +10,6 @@ from tables.filters import ProcessLogFilter
 from tables.models import LogProc
 
 
-def get_param_with_default(request, key, default):
-    if key in request.GET:
-        return default if request.GET[key] == '' else request.GET[key]
-    else:
-        return default
-
-
 def index(request):
     return render(request, 'tables/index.html', {'title': 'tables'})
 
@@ -25,21 +18,13 @@ def index(request):
 # @permission_required('mainapp.view_logproc', login_url='mainapp:main')
 def log_proc(request):
     context = dict()
-    sort = get_param_with_default(request, "sort", "-seq_id")
-    page = get_param_with_default(request, "page", 1)
-    date_from = get_param_with_default(request, "datefrom",
-                                      (timezone.now() - timezone.timedelta(1)).strftime("%Y-%m-%d %H:%M"))
-    date_to = get_param_with_default(request, "dateto",
-                                    (timezone.now() + timezone.timedelta(1)).strftime("%Y-%m-%d %H:%M"))
+    page = request.GET.get("page", 1)
 
-    title = 'Логирование',
-    navcurtab = '/logproc/',
+    title = 'Логирование'
     logproc = LogProc.objects.all()
 
     filters = ProcessLogFilter(request.GET, queryset=logproc)
-    context.update({
-        'filters': filters
-    })
+    context['filters'] = filters
 
     paginator = Paginator(filters.qs, per_page=30)
 
@@ -48,13 +33,9 @@ def log_proc(request):
 
     page_object = paginator.get_page(page)
     page_object.adjusted_elided_pages = paginator.get_elided_page_range(page)
-    page_object.sort = sort
-    page_object.date_from = date_from
-    page_object.date_to = date_to
 
     context.update({
         'title': title,
-        'navcurtab': navcurtab,
         'page_object': page_object,
         'breadcrumb': get_bread_crumb('mainapp:logproc')
     })
