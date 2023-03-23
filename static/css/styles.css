@@ -191,7 +191,7 @@
   src: url("../fonts/OpenSans/static/OpenSans-ExtraBoldItalic.ttf") format("ttf");
 }
 h1 {
-  color: #012649;
+  color: #25204e;
   font-family: Montserrat, OpenSans, Ubuntu, sans-serif;
   margin-top: 5px;
 }
@@ -204,8 +204,8 @@ h2, h3 {
 
 body {
   font-family: Montserrat, OpenSans, Ubuntu, sans-serif;
-  color: #d8fffe;
-  background-color: #d8fffe;
+  color: #f5f1e7;
+  background-color: #f5f1e7;
 }
 
 .navbar {
@@ -247,7 +247,7 @@ body {
   position: fixed;
   z-index: 1;
   left: 0;
-  background-color: #05386B;
+  background-color: #0a467e;
   overflow-x: hidden;
   transition: 0.2s;
   padding-top: 20px;
@@ -342,7 +342,7 @@ body {
 
 .button, .button-left, .button-right {
   align-items: center;
-  background-color: #745df6;
+  background-color: #14768b;
   border: 0;
   border-radius: 100px;
   box-sizing: border-box;
@@ -368,15 +368,15 @@ body {
   margin-bottom: 5px;
 }
 .button:hover, .button-left:hover, .button-right:hover {
-  background-color: #43348a;
+  background-color: #0d4d5b;
   color: white;
 }
 .button:focus, .button-left:focus, .button-right:focus {
-  background-color: #43348a;
+  background-color: #0d4d5b;
   color: white;
 }
 .button:active, .button-left:active, .button-right:active {
-  background: #43348a;
+  background: #0d4d5b;
   color: rgba(255, 255, 255, 0.7);
 }
 .button:disabled, .button-left:disabled, .button-right:disabled {
@@ -397,7 +397,7 @@ body {
   display: inline-block;
   width: 97%;
   border-radius: 25px;
-  background: #012649;
+  background: #25204e;
   padding: 20px;
   box-shadow: 0 0 10px 1px #000000;
   margin-bottom: 20px;
@@ -416,7 +416,7 @@ table {
   border-collapse: collapse;
 }
 table thead {
-  background: #012649;
+  background: #25204e;
   color: #e6fff8;
   position: sticky;
 }
@@ -425,7 +425,7 @@ table thead tr {
 }
 table thead tr th {
   padding: 5px;
-  border: 1px solid #012649;
+  border: 1px solid #25204e;
   z-index: 100;
   top: 0;
 }
@@ -436,17 +436,17 @@ table thead tr th a {
 }
 table thead tr th a:hover {
   transition: 0.1s;
-  color: #745df6;
+  color: #14768b;
   text-shadow: 2px 2px 10px #1f1f1f;
 }
 table thead tr th a.active {
   transition: 0.1s;
-  color: #745df6;
+  color: #14768b;
   transform: scale(11);
   text-shadow: 2px 2px 10px #1f1f1f;
 }
 table tbody {
-  color: #012649;
+  color: #25204e;
 }
 table tbody tr {
   z-index: 0;
@@ -478,7 +478,7 @@ table tbody tr td {
   padding-left: 0;
   margin: 20px 0;
   border-radius: 25px;
-  border-color: #012649;
+  border-color: #25204e;
   float: right !important;
   background-color: white;
 }
@@ -492,24 +492,22 @@ table tbody tr td {
   padding: 0.5rem 0.75rem;
   margin-left: -1px;
   line-height: 1.25;
-  color: #012649;
-  background-color: #e6fff8;
-  border: 1px solid #dee2e6;
+  color: #25204e;
+  background-color: #f5f1e7;
   float: left;
   text-decoration: none;
 }
 .paginator__item-link:hover {
-  transition: 0.2s;
+  transition: 0.3s;
   z-index: 2;
-  color: #0056b3;
+  color: #e6fff8;
   text-decoration: none;
-  background-color: #e9ecef;
-  border-color: #dee2e6;
+  background-color: #0d4d5b;
 }
 .paginator__item-link:focus {
   z-index: 2;
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  box-shadow: inset 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
 .paginator__item:first-child .paginator__item-link {
@@ -526,16 +524,16 @@ table tbody tr td {
   pointer-events: none;
   cursor: auto;
   background-color: white;
-  border-color: #012649;
+  border-color: #25204e;
 }
 
 .paginator__item.active .paginator__item-link {
   z-index: 1;
   color: white;
-  background-color: #745df6;
+  background-color: #14768b;
 }
 .paginator__item.active:hover {
-  background-color: #43348a;
+  background-color: #0d4d5b;
 }
 
 /*# sourceMappingURL=styles.css.map */

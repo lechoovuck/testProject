@@ -14,9 +14,6 @@ def index(request):
     return render(request, 'tables/index.html', {'title': 'tables'})
 
 
-global prev_order
-
-
 # @login_required
 # @permission_required('mainapp.view_logproc', login_url='mainapp:main')
 def log_proc(request):

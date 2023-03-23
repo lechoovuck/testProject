@@ -280,24 +280,22 @@ table
   margin-left: -1px
   line-height: 1.25
   color: colors.$dark
-  background-color: colors.$font
-  border: 1px solid #dee2e6
+  background-color: colors.$background
   float: left
   text-decoration: none
 
   &:hover
-    transition: 0.2s
+    transition: 0.3s
     z-index: 2
-    color: #0056b3
+    color: colors.$font
     text-decoration: none
-    background-color: #e9ecef
-    border-color: #dee2e6
+    background-color: colors.$hover-button
 
 
   &:focus
     z-index: 2
     outline: 0
-    box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25)
+    box-shadow: inset 0 0 0 .2rem rgba(0, 123, 255, .25)
 
 
 .paginator__item
