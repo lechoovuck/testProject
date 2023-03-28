@@ -134,12 +134,12 @@
     <div class="sidebar__container">
 
     </div>
-    <a href={% url 'index' %} class="sidebar-link">
+    <a href={% url 'tables:index' %} class="sidebar-link">
         <span class="material-icons">home</span>
         <span class="icon-text">домашняя</span>
     </a>
     <br>
-    <a href={% url 'logproc' %} class="sidebar-link">
+    <a href={% url 'tables:logproc' %} class="sidebar-link">
         <span class="material-icons">history</span>
         <span class="icon-text">логирование
             <i class="material-icons-round arrow-sidebar">chevron_right</i>
@@ -220,11 +220,10 @@
 
     {% endblock %}
 </div>
-
-{#<script defer src="{% static 'js/scripts.js' %}"></script>#}
+<div class="loader"></div>
+<script defer src="{% static 'js/scripts.js' %}"></script>
 
 {% block scripts %}
-    <script defer src={% static 'tables/js/../static/js/tables.js' %}></script>
 {% endblock %}
 </body>
 </html>

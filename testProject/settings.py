@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,11 +24,13 @@ SECRET_KEY = 'django-insecure-c2ia9%e)sq@^52l7za_0m47y+$sza@lf8uje@f%m4u$_2#d_kt
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
 INSTALLED_APPS = [
+    'authapp',
     'tables',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -76,8 +78,7 @@ WSGI_APPLICATION = 'testProject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'gtd_prod2',
         'USER': 'voicedjango',
         'PASSWORD': 'S@uMHnagnUR3NkK',
@@ -107,6 +108,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'authapp.WebUser'
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -117,9 +120,9 @@ LANGUAGE_CODE = 'ru-RU'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = False
-DATE_FORMAT = "Y.m.d"
+DATE_FORMAT = "d.m.Y"
 TIME_FORMAT = "H:i"
-DATETIME_FORMAT = "Y.m.d H:iO"
+DATETIME_FORMAT = "d.m.Y H:iO"
 USE_TZ = True
 
 REST_FRAMEWORK = {
