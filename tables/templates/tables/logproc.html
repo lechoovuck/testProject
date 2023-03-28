@@ -3,25 +3,29 @@
 {% load widget_tweaks %}
 {% load tables_extras %}
 
+{% block css %}
+    <link rel="stylesheet" href={% static 'css/tables.css' %}>
+{% endblock %}
+
 {% block content %}
     <h1>Список событий</h1>
     <div class="card">
         <h2>Фильтр</h2>
-        <form method="GET">
+        <form id ="filterForm" method="GET">
             {% render_field filters.form.eventtime class="form-field" %}
-            {% render_field filters.form.proc class="form-field" placeholder="Процедура" %}
-            {% render_field filters.form.text class="form-field" placeholder="Текст ошибки" %}
-            {% render_field filters.form.obj_type class="form-field" placeholder="Тип Объекта" %}
-            {% render_field filters.form.err_dtl class="form-field" placeholder="err_dtl" %}
+            {% render_field filters.form.proc class="form-field" placeholder="Процедура" id="proc" %}
+            {% render_field filters.form.text class="form-field" placeholder="Текст ошибки" id="errorText" %}
+            {% render_field filters.form.obj_type class="form-field" placeholder="Тип Объекта" id="objType" %}
+            {% render_field filters.form.err_dtl class="form-field" placeholder="err_dtl" id="errDtl" %}
             <br>
-            <button type="submit" class="button-left">
+            <button id="filterButton" type="submit" class="button-left" disabled="disabled">
                 Поиск
             </button>
         </form>
         <form method="POST">
             {% csrf_token %}
             <button type="submit" name="export_csv" value="export_csv"
-                    class="button-right ">
+                    class="button-right" id="exportButton" disabled="disabled">
                 Выгрузить в .csv
             </button>
         </form>
@@ -184,34 +188,34 @@
                     {% for logpr in page_object %}
                         <tr>
                             <td>
-                                <span class="div-overflow">{{ logpr.seq_id }}</span>
+                                <span class="table-td--overflow">{{ logpr.seq_id }}</span>
                             </td>
                             <td>
-                                <span class="div-overflow">{{ logpr.eventtime |date:"d.m.Y H:i:sO" }}</span>
+                                <span class="table-td--overflow">{{ logpr.eventtime |date:"d.m.Y H:i:sO" }}</span>
                             </td>
                             <td>
-                                <span class="div-overflow">{{ logpr.proc }}</span>
+                                <span class="table-td--overflow">{{ logpr.proc }}</span>
                             </td>
                             <td>
-                                <span class="div-overflow">{{ logpr.err_code }}</span>
+                                <span class="table-td--overflow">{{ logpr.err_code }}</span>
                             </td>
                             <td>
-                                <span class="div-overflow">{{ logpr.text }}</span>
+                                <span class="table-td--overflow">{{ logpr.text }}</span>
                             </td>
                             <td>
-                                <span class="div-overflow">{{ logpr.obj_id }}</span>
+                                <span class="table-td--overflow">{{ logpr.obj_id }}</span>
                             </td>
                             <td>
-                                <span class="div-overflow">{{ logpr.obj_type }}</span>
+                                <span class="table-td--overflow">{{ logpr.obj_type }}</span>
                             </td>
                             <td>
-                                <span class="div-overflow">{{ logpr.message_type }}</span>
+                                <span class="table-td--overflow">{{ logpr.message_type }}</span>
                             </td>
                             <td>
-                                <span class="div-overflow">{{ logpr.err_dtl }}</span>
+                                <span class="table-td--overflow">{{ logpr.err_dtl }}</span>
                             </td>
                             <td>
-                                <span class="div-overflow">{{ logpr.err_hint }}</span>
+                                <span class="table-td--overflow">{{ logpr.err_hint }}</span>
                             </td>
                         </tr>
                     {% endfor %}
@@ -263,5 +267,6 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src={% static 'js/tables.js' %}></script>
+    <script defer src={% static 'js/tables.js' %}></script>
+    <script defer src={% static 'tables/js/logproc.js' %}></script>
 {% endblock scripts %}

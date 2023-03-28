@@ -26,7 +26,7 @@ def get_fc_time_zone(fc):
         fc_tz = "UTC"
     return fc_tz
 
-# @login_required
+@login_required
 def facilityselectwebuser(request):
     if request.method == "POST":
         facility_id = request.POST.get('facility_name')
@@ -101,8 +101,8 @@ def userprofile(request):
 
 
 
-# @login_required
-# @permission_required('mainapp.view_monitor', login_url='mainapp:main')
+@login_required
+@permission_required('mainapp.view_monitor', login_url='mainapp:main')
 def index(request):
     title = 'Главная'
     navcurtab = '/'
@@ -234,7 +234,7 @@ def index(request):
         'finenorm3': finenorm3,
         'finenorm4': finenorm4,
         'datatw': datatw,
-        'fc1': fc1,
+        # 'fc1': fc1,
         'datnow': datnow2,
         'qualitylastweek': qualitylastweek,
         'qualitylastmonth': qualitylastmonth,
@@ -243,8 +243,8 @@ def index(request):
     return render(request, 'tables/index.html', context)
 
 
-# @login_required
-# @permission_required('mainapp.view_logproc', login_url='mainapp:main')
+@login_required
+@permission_required('mainapp.view_logproc', login_url='mainapp:main')
 def log_proc(request):
     filter_is_used = request.get_full_path() != '/logproc/'
     context = dict()

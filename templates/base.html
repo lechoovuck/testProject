@@ -31,45 +31,45 @@
     <title>{{ title }}</title>
 </head>
 <body>
+<div class="wrapper">
+    <header class="header" id="header">
+        <div class="header-logo">
+            <a href={% url 'tables:index' %}>
+                <img src={% static '/img/logo.png' %} alt="logo" data-src={% static '/img/logo.png' %}
+                        data-src-retina={% static '/img/logo_2x.png' %}
+                     width="133" height="37">
+            </a>
+        </div>
+        <ul class="header__nav">
+            {% if formuserfacility != "" %}
+                <li>
+                    <form class="header__nav-facilityform" method="POST" action="facilityselectwebuser/">
+                        <div class="form-group">
+                            {% csrf_token %}
+                            {% for field in formuserfacility %}
 
-<header class="header" id="header">
-    <div class="header-logo">
-        <a href={% url 'tables:index' %}>
-            <img src={% static '/img/logo.png' %} alt="logo" data-src={% static '/img/logo.png' %}
-                    data-src-retina={% static '/img/logo_2x.png' %}
-                 width="133" height="37">
-        </a>
-    </div>
-    <ul class="header__nav">
-        {% if formuserfacility != "" %}
+                                {{ field }}
+
+                            {% endfor %}
+                        </div>
+                    </form>
+                </li>
+            {% endif %}
             <li>
-                <form class="header__nav-facilityform" method="POST" action="facilityselectwebuser/">
-                    <div class="form-group">
-                        {% csrf_token %}
-                        {% for field in formuserfacility %}
+                <div class="dropdown pull-right">
+                    <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false">
 
-                            {{ field }}
+                        <div class="pull-left p-r-10 p-t-5 fs-15 font-heading">
+                            {% if user.is_authenticated %}
+                                <span class="semi-bold">{{ user.first_name }} {{ user.last_name }}</span>
+                            {% else %}
+                                <span class="semi-bold">Для авторизации нажмите на картинку</span>
+                            {% endif %}
+                        </div>
 
-                        {% endfor %}
-                    </div>
-                </form>
-            </li>
-        {% endif %}
-        <li>
-            <div class="dropdown pull-right">
-                <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false">
-
-                    <div class="pull-left p-r-10 p-t-5 fs-15 font-heading">
-                        {% if user.is_authenticated %}
-                            <span class="semi-bold">{{ user.first_name }} {{ user.last_name }}</span>
-                        {% else %}
-                            <span class="semi-bold">Для авторизации нажмите на картинку</span>
-                        {% endif %}
-                    </div>
-
-                    <span class="thumbnail-wrapper d32 circular inline">
+                        <span class="thumbnail-wrapper d32 circular inline">
                         {% if user.is_authenticated %}
                             {% if user.avatar != '' %}
                                 <img src="/media/{{ user.avatar }}" alt="" data-src="/media/{{ user.avatar }}"
@@ -85,85 +85,86 @@
                                  data-src-retina="/static/img/profiles/avatar.jpg" width="32" height="32">
                         {% endif %}
                         </span>
-                </button>
-                <ul class="dropdown-menu profile-dropdown" role="menu">
-                    {% if user.is_authenticated %}
-                        <li><a href="{% url 'tables:userprofile' %}"><i class="pg-settings_small"></i>Профиль</a></li>
-                        <li><a href="#"><i class="pg-laptop"></i>Роль: Мониторинг</a></li>
-                        <li class="bg-master-lighter">
-                            <a href="{% url 'auth:logout' %}" class="clearfix">
-                                <span class="pull-left">Выход</span>
-                                <span class="pull-right"><i class="pg-power"></i></span>
-                            </a>
-                        </li>
-                    {% else %}
-                        <li><a href="#"><i class="pg-settings_small"></i>Профиль</a></li>
-                        <li><a href="#"><i class="pg-cupboard"></i>Роль: Монитринг</a></li>
-                        <li class="bg-master-lighter">
-                            <a href="{% url 'auth:login' %}" class="clearfix">
-                                <span class="pull-left">Войти</span>
-                                <span class="pull-right"><i class="pg-power"></i></span>
-                            </a>
-                        </li>
-                    {% endif %}
-                </ul>
-            </div>
-        </li>
-    </ul>
-</header>
+                    </button>
+                    <ul class="dropdown-menu profile-dropdown" role="menu">
+                        {% if user.is_authenticated %}
+                            <li><a href="{% url 'tables:userprofile' %}"><i class="pg-settings_small"></i>Профиль</a>
+                            </li>
+                            <li><a href="#"><i class="pg-laptop"></i>Роль: Мониторинг</a></li>
+                            <li class="bg-master-lighter">
+                                <a href="{% url 'auth:logout' %}" class="clearfix">
+                                    <span class="pull-left">Выход</span>
+                                    <span class="pull-right"><i class="pg-power"></i></span>
+                                </a>
+                            </li>
+                        {% else %}
+                            <li><a href="#"><i class="pg-settings_small"></i>Профиль</a></li>
+                            <li><a href="#"><i class="pg-cupboard"></i>Роль: Монитринг</a></li>
+                            <li class="bg-master-lighter">
+                                <a href="{% url 'auth:login' %}" class="clearfix">
+                                    <span class="pull-left">Войти</span>
+                                    <span class="pull-right"><i class="pg-power"></i></span>
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </header>
 
-<div id="sidebar" class="sidebar">
-    <div class="sidebar__container">
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar__container">
 
+        </div>
+        <a href={% url 'tables:index' %} class="sidebar-link">
+            <span class="material-icons">home</span>
+            <span class="icon-text">домашняя</span>
+        </a>
+
+        <br>
+        <a href={% url 'tables:logproc' %} class="sidebar-link">
+            <span class="material-icons">history</span>
+            <span class="icon-text">логирование
+                <i class="material-icons-round arrow-sidebar">chevron_right</i>
+            </span>
+        </a>
+        <br>
+        <a href="#" class="sidebar-link">
+            <i class="material-icons">smartphone</i>
+            <span class="icon-text">оборудование
+                <i class="material-icons-round arrow-sidebar">chevron_right</i>
+            </span>
+
+
+        </a>
+        <br>
+        <a href="#" class="sidebar-link">
+            <i class="material-icons">person_pin</i>
+            <span class="icon-text">пользователи
+                <i class="material-icons-round arrow-sidebar">chevron_right</i>
+            </span>
+        </a>
     </div>
-    <a href={% url 'tables:index' %} class="sidebar-link">
-        <span class="material-icons">home</span>
-        <span class="icon-text">домашняя</span>
-    </a>
-    <br>
-    <a href={% url 'tables:logproc' %} class="sidebar-link">
-        <span class="material-icons">history</span>
-        <span class="icon-text">логирование
-                <i class="material-icons-round arrow-sidebar">chevron_right</i>
-            </span>
-    </a>
-    <br>
-    <a href="#" class="sidebar-link">
-        <i class="material-icons">smartphone</i>
-        <span class="icon-text">оборудование
-                <i class="material-icons-round arrow-sidebar">chevron_right</i>
-            </span>
 
+    <div class="main" id="content">
+        {% block content %}
 
-    </a>
-    <br>
-    <a href="#" class="sidebar-link">
-        <i class="material-icons">person_pin</i>
-        <span class="icon-text">пользователи
-                <i class="material-icons-round arrow-sidebar">chevron_right</i>
-            </span>
-    </a>
+        {% endblock %}
+    </div>
+
+    <footer class="footer">
+        <p class="footer__left">
+            Copyright &copy; 2023 <i>Voiceman LLC</i> Все права защищены.
+        </p>
+        <p class="footer__right">
+            <a href="#" data-toggle="modal" data-target="#about">О программе</a> <span class="hint-text">| Сделано для работы</span>
+        </p>
+    </footer>
+
 </div>
-
-<div class="body" id="content">
-    {% block content %}
-
-    {% endblock %}
-</div>
-
-<footer class="footer">
-    <p class="footer__left">
-        <span>Copyright &copy; 2023 </span>
-        <span>Voiceman LLC</span>.
-        <span>Все права защищены. </span>
-    </p>
-    <p class="footer__right">
-        <a href="#" data-toggle="modal" data-target="#about">О программе</a> <span class="hint-text">| Сделано для работы</span>
-    </p>
-</footer>
-
 <div class="loader"></div>
-
+<script defer src="{% static 'js/jquery.js' %}"></script>
 <script defer src="{% static 'js/scripts.js' %}"></script>
 
 {% block scripts %}

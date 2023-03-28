@@ -183,13 +183,7 @@ class VDevList(models.Model):
         db_column='last_event_date',
         null=False
     )
-    # dev_owner = models.ForeignKey(
-    #     'Facility',
-    #     verbose_name='Склад устройства',
-    #     db_column='dev_owner',
-    #     on_delete=models.CASCADE,
-    #     null=False,
-    # )
+
     dev_owner = models.IntegerField(
         verbose_name='Склад устройства',
         db_column='dev_owner',
