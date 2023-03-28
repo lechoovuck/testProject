@@ -257,319 +257,6 @@ class VDevList(models.Model):
         return str(self.dev_uid)
 
 
-class Facility(models.Model):
-    facility_id = models.AutoField(
-        verbose_name='ID склада',
-        db_column='facility_id',
-        null=False,
-        blank=True,
-        primary_key=True,
-    )
-    facility_name = models.CharField(
-        verbose_name='Название склада',
-        max_length=20,
-        db_column='facility_name',
-        null=True,
-        blank=True,
-    )
-    status = models.IntegerField(
-        verbose_name='Статус',
-        db_column='status',
-        blank=True,
-        null=True,
-        default=0,
-    )
-    ext_id = models.CharField(
-        verbose_name='Внешний ID склада',
-        max_length=20,
-        db_column='ext_id',
-        blank=True,
-        null=True,
-    )
-    ext_id2 = models.CharField(
-        verbose_name='Внешний ID склада 2',
-        max_length=50,
-        db_column='ext_id2',
-        blank=True,
-        null=True,
-    )
-    yard_id = models.IntegerField(
-        'Yard',
-        db_column='yard_id',
-        blank=True,
-        null=True,
-    )
-    city_code = models.CharField(
-        verbose_name='Код города',
-        db_column='city_code',
-        max_length=20,
-        blank=True,
-        null=True
-    )
-
-    owner = models.CharField(
-        max_length=20,
-        blank=True,
-        null=True,
-        verbose_name='Владелец',
-        db_column='owner',
-    )
-
-    def_time_zone = models.CharField(
-        max_length=50,
-        blank=True,
-        null=True,
-        verbose_name='Часовой пояс',
-        db_column='def_time_zone',
-    )
-
-    sqr_usable = models.CharField(
-        max_length=50,
-        blank=True,
-        null=True,
-        verbose_name='Площадь полезная',
-        db_column='sqr_usable',
-    )
-
-    sqr_tech = models.CharField(
-        max_length=50,
-        blank=True,
-        null=True,
-        verbose_name='площадь проездов/техническая зона',
-        db_column='sqr_tech',
-    )
-
-    doors_qty = models.CharField(
-        max_length=250,
-        blank=True,
-        null=True,
-        verbose_name='Кол-во ворот',
-        db_column='doors_qty',
-    )
-
-    pandus_dtl = models.CharField(
-        max_length=250,
-        blank=True,
-        null=True,
-        verbose_name='Наличие пандуса, длина (под какое количество ТС)',
-        db_column='pandus_dtl',
-    )
-
-    wh_class = models.CharField(
-        max_length=50,
-        blank=True,
-        null=True,
-        verbose_name='Класс склада, Теплый/холодный',
-        db_column='wh_class',
-    )
-
-    video_exists = models.CharField(
-        max_length=50,
-        blank=True,
-        null=True,
-        verbose_name='Наличие видеонаблюдения',
-        db_column='video_exists',
-    )
-
-    floor_dtl = models.CharField(
-        max_length=250,
-        null=True,
-        blank=True,
-        verbose_name='Качество и покрытие пола',
-        db_column='floor_dtl',
-    )
-
-    cells_qty = models.CharField(
-        max_length=50,
-        null=True,
-        blank=True,
-        verbose_name='Кол-во паллетомест на стеллажах выдачи (при наличии)',
-        db_column='cells_qty',
-    )
-
-    height_ceiling = models.CharField(
-        max_length=50,
-        null=True,
-        blank=True,
-        verbose_name='Высота потолков',
-        db_column='height_ceiling',
-    )
-
-    wifi_exists = models.CharField(
-        max_length=50,
-        blank=True,
-        null=True,
-        verbose_name='Наличие WIFI на складе',
-        db_column='wifi_exists',
-    )
-
-    sqr_office = models.CharField(
-        max_length=50,
-        null=True,
-        blank=True,
-        verbose_name='Площадь офисных помещений',
-        db_column='sqr_office',
-    )
-
-    office_dist = models.CharField(
-        max_length=50,
-        blank=True,
-        null=True,
-        verbose_name='Удаленность офиса от склада',
-        db_column='office_dist',
-    )
-
-    warm_curtain = models.CharField(
-        max_length=50,
-        blank=True,
-        null=True,
-        verbose_name='Наличие тепловых завес',
-        db_column='warm_curtain',
-    )
-
-    access_system = models.CharField(
-        max_length=50,
-        blank=True,
-        null=True,
-        verbose_name='Пропускная система на территорию, учет автотранспорта',
-        db_column='access_system',
-    )
-
-    park_client = models.CharField(
-        max_length=50,
-        blank=True,
-        null=True,
-        verbose_name='Парковок	ТС клиентов',
-        db_column='park_client',
-    )
-
-    park_adm = models.CharField(
-        max_length=50,
-        blank=True,
-        null=True,
-        verbose_name='Парковок ТС сотрудников',
-        db_column='park_adm',
-    )
-
-    park_track = models.CharField(
-        max_length=50,
-        blank=True,
-        null=True,
-        verbose_name='Парковок Большегрузный транспорт',
-        db_column='park_track',
-    )
-
-    park_own_transp = models.CharField(
-        max_length=50,
-        blank=True,
-        null=True,
-        verbose_name='Парковок Машины ГЛ (собственный транспорт)',
-        db_column='park_own_transp',
-    )
-
-    equip_dizel = models.CharField(
-        max_length=50,
-        blank=True,
-        null=True,
-        verbose_name='Кол-во погрузчиков дизель',
-        db_column='equip_dizel',
-    )
-
-    equip_el = models.CharField(
-        max_length=50,
-        blank=True,
-        null=True,
-        verbose_name='Электрические погрузчики',
-        db_column='equip_el',
-    )
-
-    equip_rohl_el = models.CharField(
-        max_length=50,
-        blank=True,
-        null=True,
-        verbose_name='Электротележки',
-        db_column='equip_rohl_el',
-    )
-
-    equip_rohl = models.CharField(
-        max_length=50,
-        blank=True,
-        null=True,
-        verbose_name='Кол-во рохлей',
-        db_column='equip_rohl',
-    )
-
-    wgt_floor = models.CharField(
-        max_length=50,
-        blank=True,
-        null=True,
-        verbose_name='Весы Напольные',
-        db_column='wgt_floor',
-    )
-
-    wgt_rohl = models.CharField(
-        max_length=50,
-        blank=True,
-        null=True,
-        verbose_name='Весовые рохли',
-        db_column='wgt_rohl',
-    )
-
-    light_pandus = models.CharField(
-        max_length=50,
-        blank=True,
-        null=True,
-        verbose_name='Освещение	Пандус/ТС',
-        db_column='light_pandus',
-    )
-
-    light_wh = models.CharField(
-        max_length=50,
-        blank=True,
-        null=True,
-        verbose_name='Освещение Склад',
-        db_column='light_wh',
-    )
-
-    class Meta:
-        db_table = '"bpdata"."facility"'
-
-    def get_facilitylist(user):
-        if user.is_authenticated:
-            return Facility.objects.all().order_by('facility_id')
-        else:
-            return []
-
-    def get_facility_by_id(request, facility_id):
-        # Если пользователь авторизирован
-        if request.user.is_authenticated:
-            res = Facility.objects.filter(facility_id=facility_id)
-        # Иначе возвращаем пустую корзину
-        else:
-            res = []
-        return res
-
-    def get_webuser_facility_list(request):
-        if request.user.is_authenticated:
-            res = Facility.objects.filter(facility_id__in=request.user.get_facility_list())
-        else:
-            res = []
-        return res
-
-    def get_webuser_facility(request):
-        if request.user.is_authenticated:
-            res = Facility.objects.filter(facility_id=request.user.get_current_facility_id())
-        else:
-            res = []
-        return res
-
-    def __unicode__(self):
-        return self.facility_name
-
-    def __str__(self):
-        return self.facility_name
-
-
 class FacilityProperties(models.Model):
     prop_id = models.AutoField(
         verbose_name='prop_id',
@@ -1200,3 +887,359 @@ class Responsible(models.Model):
 
     def __str__(self):
         return str(self.user_name)
+
+class Yard(models.Model):
+    id = models.AutoField(
+        verbose_name='ID двора',
+        db_column='id',
+        null=False,
+        primary_key=True,
+    )
+    yard_name = models.CharField(
+        verbose_name='Название двора',
+        max_length=20,
+        db_column='yard_name',
+        null=False,
+    )
+    status = models.IntegerField(
+        verbose_name='Cтатус',
+        db_column='status',
+        null=False,
+        default=0,
+    )
+
+    class Meta:
+        db_table = '"bpdata"."yard"'
+
+    def get_yardlist(user):
+        if user.is_authenticated:
+            return Yard.objects.all().order_by('id')
+        else:
+            return []
+
+    def get_yard_by_id(request, id):
+        # Если пользователь авторизирован
+        if request.user.is_authenticated:
+            res = Yard.objects.filter(id=id)
+        # Иначе возвращаем пустую корзину
+        else:
+            res = []
+        return res
+
+    def __str__(self):
+        return self.yard_name
+
+
+class Facility(models.Model):
+    facility_id = models.AutoField(
+        verbose_name='ID склада',
+        db_column='facility_id',
+        null=False,
+        blank=True,
+        primary_key=True,
+    )
+    facility_name = models.CharField(
+        verbose_name='Название склада',
+        max_length=20,
+        db_column='facility_name',
+        null=True,
+        blank=True,
+    )
+    status = models.IntegerField(
+        verbose_name='Статус',
+        db_column='status',
+        blank=True,
+        null=True,
+        default=0,
+    )
+    ext_id = models.CharField(
+        verbose_name='Внешний ID склада',
+        max_length=20,
+        db_column='ext_id',
+        blank=True,
+        null=True,
+    )
+    ext_id2 = models.CharField(
+        verbose_name='Внешний ID склада 2',
+        max_length=50,
+        db_column='ext_id2',
+        blank=True,
+        null=True,
+    )
+    yard_id = models.ForeignKey(
+        'Yard',
+        on_delete=models.CASCADE,
+        verbose_name='Двор',
+        db_column='yard_id',
+        blank=True,
+        null=True,
+    )
+    city_code = models.CharField(
+        verbose_name='Код города',
+        db_column='city_code',
+        max_length=20,
+        blank=True,
+        null=True
+    )
+
+    owner = models.CharField(
+        max_length=20,
+        blank=True,
+        null=True,
+        verbose_name='Владелец',
+        db_column='owner',
+    )
+
+    def_time_zone = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True,
+        verbose_name='Часовой пояс',
+        db_column='def_time_zone',
+    )
+
+    sqr_usable = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True,
+        verbose_name='Площадь полезная',
+        db_column='sqr_usable',
+    )
+
+    sqr_tech = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True,
+        verbose_name='площадь проездов/техническая зона',
+        db_column='sqr_tech',
+    )
+
+    doors_qty = models.CharField(
+        max_length=250,
+        blank=True,
+        null=True,
+        verbose_name='Кол-во ворот',
+        db_column='doors_qty',
+    )
+
+    pandus_dtl = models.CharField(
+        max_length=250,
+        blank=True,
+        null=True,
+        verbose_name='Наличие пандуса, длина (под какое количество ТС)',
+        db_column='pandus_dtl',
+    )
+
+    wh_class = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True,
+        verbose_name='Класс склада, Теплый/холодный',
+        db_column='wh_class',
+    )
+
+    video_exists = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True,
+        verbose_name='Наличие видеонаблюдения',
+        db_column='video_exists',
+    )
+
+    floor_dtl = models.CharField(
+        max_length=250,
+        null=True,
+        blank=True,
+        verbose_name='Качество и покрытие пола',
+        db_column='floor_dtl',
+    )
+
+    cells_qty = models.CharField(
+        max_length=50,
+        null=True,
+        blank=True,
+        verbose_name='Кол-во паллетомест на стеллажах выдачи (при наличии)',
+        db_column='cells_qty',
+    )
+
+    height_ceiling = models.CharField(
+        max_length=50,
+        null=True,
+        blank=True,
+        verbose_name='Высота потолков',
+        db_column='height_ceiling',
+    )
+
+    wifi_exists = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True,
+        verbose_name='Наличие WIFI на складе',
+        db_column='wifi_exists',
+    )
+
+    sqr_office = models.CharField(
+        max_length=50,
+        null=True,
+        blank=True,
+        verbose_name='Площадь офисных помещений',
+        db_column='sqr_office',
+    )
+
+    office_dist = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True,
+        verbose_name='Удаленность офиса от склада',
+        db_column='office_dist',
+    )
+
+    warm_curtain = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True,
+        verbose_name='Наличие тепловых завес',
+        db_column='warm_curtain',
+    )
+
+    access_system = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True,
+        verbose_name='Пропускная система на территорию, учет автотранспорта',
+        db_column='access_system',
+    )
+
+    park_client = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True,
+        verbose_name='Парковок	ТС клиентов',
+        db_column='park_client',
+    )
+
+    park_adm = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True,
+        verbose_name='Парковок ТС сотрудников',
+        db_column='park_adm',
+    )
+
+    park_track = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True,
+        verbose_name='Парковок Большегрузный транспорт',
+        db_column='park_track',
+    )
+
+    park_own_transp = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True,
+        verbose_name='Парковок Машины ГЛ (собственный транспорт)',
+        db_column='park_own_transp',
+    )
+
+    equip_dizel = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True,
+        verbose_name='Кол-во погрузчиков дизель',
+        db_column='equip_dizel',
+    )
+
+    equip_el = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True,
+        verbose_name='Электрические погрузчики',
+        db_column='equip_el',
+    )
+
+    equip_rohl_el = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True,
+        verbose_name='Электротележки',
+        db_column='equip_rohl_el',
+    )
+
+    equip_rohl = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True,
+        verbose_name='Кол-во рохлей',
+        db_column='equip_rohl',
+    )
+
+    wgt_floor = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True,
+        verbose_name='Весы Напольные',
+        db_column='wgt_floor',
+    )
+
+    wgt_rohl = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True,
+        verbose_name='Весовые рохли',
+        db_column='wgt_rohl',
+    )
+
+    light_pandus = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True,
+        verbose_name='Освещение	Пандус/ТС',
+        db_column='light_pandus',
+    )
+
+    light_wh = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True,
+        verbose_name='Освещение Склад',
+        db_column='light_wh',
+    )
+
+    class Meta:
+        db_table = '"bpdata"."facility"'
+
+    def get_facilitylist(user):
+        if user.is_authenticated:
+            return Facility.objects.all().order_by('facility_id')
+        else:
+            return []
+
+    def get_facility_by_id(request, facility_id):
+        # Если пользователь авторизирован
+        if request.user.is_authenticated:
+            res = Facility.objects.filter(facility_id=facility_id)
+        # Иначе возвращаем пустую корзину
+        else:
+            res = []
+        return res
+
+    def get_webuser_facility_list(request):
+        if request.user.is_authenticated:
+            res = Facility.objects.filter(facility_id__in=request.user.get_facility_list())
+        else:
+            res = []
+        return res
+
+    def get_webuser_facility(request):
+        if request.user.is_authenticated:
+            res = Facility.objects.filter(facility_id=request.user.get_current_facility_id())
+        else:
+            res = []
+        return res
+
+    def __unicode__(self):
+        return self.facility_name
+
+    def __str__(self):
+        return self.facility_name

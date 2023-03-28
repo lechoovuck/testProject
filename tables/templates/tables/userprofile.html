@@ -1,0 +1,86 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% load tz %}
+
+{% block content %}
+    <div class="content">
+        <div class="modal fade fill-in" id="modalFillIn" tabindex="-1" role="dialog" aria-hidden="true">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                <i class="pg-close"></i>
+            </button>
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="text-left p-b-5">Смена пароля</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-md-9">
+                            <form method="POST" action="password_edit/">
+                                {% csrf_token %}
+                                {{ formpass.as_p }}
+                                <p class="text-center sm-text-center hinted-text p-t-30 p-r-10"></p>
+                                <button type="button" class="btn btn-primary btn-cons fs-15" data-dismiss="modal">
+                                    Отмена
+                                </button>
+                                <input type="submit" class="btn btn-primary btn-cons fs-15" value="Сохранить">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+
+        <div class="full-height full-width ng-scope">
+            <div class="container-fluid padding-25 sm-padding-10 sm-gutter ng-scope">
+                <div class="panel-heading">
+                    <h2 align="center">{{ user.first_name }} {{ user.last_name }} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                        <button class="btn btn-success" data-target="#modalFillIn" data-toggle="modal">
+                            <i class="fa"></i> Сменить пароль
+                        </button>
+                    </h2>
+
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="table-responsive">
+                        <form class="form-horizontal" method="post" enctype="multipart/form-data">
+                            <table align="center" class="dataTables_wrapper form-inline no-footer">
+                                <tr class=odd>
+                                    <td class="v-align-middle sorting_1">
+                                        <p><img src="/media/{{ user.avatar }}"
+                                                data-src-retina="/media/{{ user.avatar }}"
+                                                width="320" height="320"></p>
+                                        {% csrf_token %}
+                                        <br>
+                                    </td>
+                                    <td>
+                                        <p class="help">{{ form.last_name.label }}</p>
+                                        <p>{{ form.last_name }}</p>
+                                        <p class="help">{{ form.first_name.label }}</p>
+                                        <p>{{ form.first_name }}</p>
+                                        <p class="help">{{ form.email.label }}</p>
+                                        <p>{{ form.email }}</p>
+                                        <p class="help"></p>
+                                    </td>
+                                    <td class="v-align-middle sorting_1">
+                                    </td>
+                                </tr>
+                                <tr class=odd>
+                                    <td><p>Размер 320х320</p>
+                                        <p>{{ form.avatar }}</p></td>
+                                    <td></td>
+                                    <td>
+                                        <button type="submit" class="btn btn-success">Сохранить</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

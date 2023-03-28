@@ -2,15 +2,17 @@ import csv
 import datetime
 
 from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.forms import PasswordChangeForm
 from django.core.paginator import Paginator
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 from django.shortcuts import render
 from django.db.models import Max, Sum, Q, Count, QuerySet
 from django.db import connection, transaction
 from django.urls import reverse
+from .forms import *
+from .filters import ProcessLogFilter
+from .models import *
 
-from tables.filters import ProcessLogFilter
-from tables.models import *
 from .breadcrumb import get_bread_crumb
 
 
@@ -24,7 +26,7 @@ def get_fc_time_zone(fc):
         fc_tz = "UTC"
     return fc_tz
 
-
+# @login_required
 def facilityselectwebuser(request):
     if request.method == "POST":
         facility_id = request.POST.get('facility_name')
@@ -32,8 +34,75 @@ def facilityselectwebuser(request):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
-@login_required
-@permission_required('mainapp.view_monitor', login_url='mainapp:main')
+def loadDynamicDemo(request):
+    fc = Facility.get_webuser_facility(request)
+    data = VMonitorDirections.objects.filter(facility_id__in=fc).order_by('dir_name')
+    return render(request, 'tables/index_directions.html', {'data': data})
+
+
+def loadDynamicDemo2(request):
+    fc = Facility.get_webuser_facility(request)
+    data = VMonitorTransp.objects.filter(facility_id__in=fc).order_by('dat_begin')
+    return render(request, 'tables/index_transport.html', {'data': data})
+
+
+def loadDynamicDemo3(request):
+    fc = Facility.get_webuser_facility(request)
+    data = VMonitorHuForAnpack.objects.filter(facility_id__in=fc).order_by('dur_tz')
+    return render(request, 'tables/index_hu_for_unpack.html', {'data': data})
+
+
+def loadDynamicDemo4(request):
+    fc = Facility.get_webuser_facility(request)
+    data = VMonitorTaskWork.objects.filter(facility__in=fc).order_by('create_date')
+    return render(request, 'tables/index_task_in_work.html', {'data': data, 'facility_tz': get_fc_time_zone(fc)})
+
+
+def loadDynamicDemo5(request):
+    fc = Facility.get_webuser_facility(request)
+    data = VTrucks.objects.filter(facility_id__in=fc, loc_type='DOOR').order_by('-direction', '-status', 'add_date')
+    datnow2 = datetime.datetime.now() + datetime.timedelta(hours=-12)
+    datnow2 = datnow2.strftime("%Y-%m-%d %H:%M:%S")
+    return render(request, 'tables/index_trucks.html', {'data': data, 'datnow': datnow2})
+
+
+def loadDynamicDemo6(request):
+    fc = Facility.get_webuser_facility(request)
+    datat = VTrucks.objects.filter(facility_id__in=fc, loc_type='PARKING').order_by('-direction', '-status', 'add_date')
+    return render(request, 'tables/index_trucksInLine.html', {'data': datat})
+
+
+def loadDynamicDemo7(request):
+    fc = Facility.get_webuser_facility(request)
+    data = VMonitorTransp.objects.filter(facility_id__in=fc, priority__gte=0).order_by('dat_begin')
+    return render(request, 'tables/index_trucks_transport_plan.html', {'data': data})
+
+
+def facilityselectwebuser(request):
+    if request.method == "POST":
+        facility_id = request.POST.get('facility_name')
+        request.user.set_current_facility_id(facility_id)
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def userprofile(request):
+    title = 'Профиль'
+    if request.method == 'POST':
+        form = ProfUserForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('mainapp:userprofile'))
+        else:
+            return HttpResponseNotFound("<h2>'Форма заполнена некоректно!'</h2>")
+    else:
+        form = ProfUserForm(instance=request.user)
+    formpass = PasswordChangeForm(request.user, request.POST)
+    content = {'title': title, 'form': form, 'formpass': formpass}
+    return render(request, 'tables/userprofile.html', content)
+
+
+
+# @login_required
+# @permission_required('mainapp.view_monitor', login_url='mainapp:main')
 def index(request):
     title = 'Главная'
     navcurtab = '/'
@@ -73,8 +142,6 @@ def index(request):
     qualitylastweek = VgoogleKeyMonitor.objects.filter(column_4=value_max_items, column_1=fc2)
     qualitylastmonth = VgoogleKeyMonitor.objects.filter(column_1=fc2).values('column_1').annotate(
         Max('column_6')).order_by()
-    # datnow4 = datetime.datetime.now() + datetime.timedelta(days=-31)
-    # datnow5 = datnow4.strftime("%Y-%m-%d")
     value_max_items = set(
         row['column_6__max']
         for row in qualitylastmonth
@@ -176,8 +243,8 @@ def index(request):
     return render(request, 'tables/index.html', context)
 
 
-@login_required
-@permission_required('mainapp.view_logproc', login_url='mainapp:main')
+# @login_required
+# @permission_required('mainapp.view_logproc', login_url='mainapp:main')
 def log_proc(request):
     filter_is_used = request.get_full_path() != '/logproc/'
     context = dict()
@@ -185,7 +252,7 @@ def log_proc(request):
 
     title = 'Логирование'
     order_by = request.GET.get('orderby', '-seq_id')
-    logproc = logproc = LogProc.objects.all().order_by(order_by) if filter_is_used else QuerySet(
+    logproc = LogProc.objects.all().order_by(order_by) if filter_is_used else QuerySet(
         LogProc.objects.all().first())
 
     filters = ProcessLogFilter(request.GET, queryset=logproc)

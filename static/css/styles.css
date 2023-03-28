@@ -190,6 +190,12 @@
   font-style: italic;
   src: url("../fonts/OpenSans/static/OpenSans-ExtraBoldItalic.ttf") format("ttf");
 }
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+}
+
 .loader {
   z-index: 1000;
   position: fixed;
@@ -214,7 +220,7 @@
   width: 75px;
   height: 75px;
   border: 15px solid #f5f1e7;
-  border-top-color: #25204e;
+  border-top-color: #55608f;
   border-radius: 50%;
   animation: loading 0.75s ease infinite;
 }
@@ -227,22 +233,17 @@
     transform: rotate(1turn);
   }
 }
-h1 {
-  color: #25204e;
-  font-family: Montserrat, OpenSans, Ubuntu, sans-serif;
-  margin-top: 5px;
-}
-
-h2, h3 {
+h1, h2, h3, h4, h5, h6 {
   color: white;
   font-family: Montserrat, OpenSans, Ubuntu, sans-serif;
   margin-top: 5px;
 }
 
 body {
+  margin: 0;
   font-family: Montserrat, OpenSans, Ubuntu, sans-serif;
   color: #f5f1e7;
-  background-color: #f5f1e7;
+  background: linear-gradient(45deg, #49a09d, #5f2c82);
 }
 
 .navbar {
@@ -277,20 +278,20 @@ body {
 }
 
 .sidebar {
-  top: 60px;
   text-transform: uppercase;
   height: 100%;
+  top: 0;
   width: 74px;
   position: fixed;
-  z-index: 1;
+  z-index: 1000;
   left: 0;
-  background-color: #0a467e;
+  background-color: #5f2c82;
   overflow-x: hidden;
   transition: 0.2s;
   padding-top: 20px;
   white-space: nowrap;
   font-family: Montserrat, OpenSans, Ubuntu, sans-serif;
-  box-shadow: 0 0 10px 1px #000000;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 .sidebar:hover {
   width: 280px;
@@ -379,7 +380,7 @@ body {
 
 .button, .button-left, .button-right {
   align-items: center;
-  background-color: #14768b;
+  background-color: #49a09d;
   border: 0;
   border-radius: 100px;
   box-sizing: border-box;
@@ -433,18 +434,18 @@ body {
 .card {
   display: inline-block;
   width: 97%;
-  border-radius: 25px;
-  background: #25204e;
+  border-radius: 15px;
+  background: rgba(85, 96, 143, 0.8);
   padding: 20px;
-  box-shadow: 0 0 10px 1px #000000;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
   margin-top: 20px;
   font-family: Montserrat, OpenSans, Ubuntu, sans-serif;
 }
 
 .table-wrapper {
-  border-radius: 20px;
-  height: 70vh;
+  border-radius: 10px;
+  height: 2400px;
 }
 
 table {
@@ -453,7 +454,7 @@ table {
   border-collapse: collapse;
 }
 table thead {
-  background: #25204e;
+  background: #55608f;
   color: #e6fff8;
   position: sticky;
 }
@@ -461,8 +462,8 @@ table thead tr {
   z-index: 10;
 }
 table thead tr th {
+  background: rgba(85, 96, 143, 0.8);
   padding: 5px;
-  border: 1px solid #25204e;
   z-index: 100;
   top: 0;
 }
@@ -473,25 +474,39 @@ table thead tr th a {
 }
 table thead tr th a:hover {
   transition: 0.1s;
-  color: #14768b;
-  text-shadow: 2px 2px 10px #1f1f1f;
+  color: #9fccf8;
 }
 table thead tr th a.active {
   transition: 0.1s;
-  color: #14768b;
+  color: #9fccf8;
   transform: scale(11);
-  text-shadow: 2px 2px 10px #1f1f1f;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 table tbody {
-  color: #25204e;
+  color: #55608f;
 }
 table tbody tr {
   z-index: 0;
 }
+table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
 table tbody tr td {
-  background: white;
+  color: white;
+  background: rgba(255, 255, 255, 0.2);
   padding: 4px;
-  border: 1px solid #1b1b1b;
+  position: relative;
+  z-index: 0;
+}
+table tbody tr td:hover:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.1);
+  z-index: -1;
 }
 
 .div-overflow {
@@ -515,7 +530,7 @@ table tbody tr td {
   padding-left: 0;
   margin: 20px 0;
   border-radius: 25px;
-  border-color: #25204e;
+  border-color: #55608f;
   float: right !important;
   background-color: white;
 }
@@ -529,7 +544,7 @@ table tbody tr td {
   padding: 0.5rem 0.75rem;
   margin-left: -1px;
   line-height: 1.25;
-  color: #25204e;
+  color: #55608f;
   background-color: #f5f1e7;
   float: left;
   text-decoration: none;
@@ -561,16 +576,86 @@ table tbody tr td {
   pointer-events: none;
   cursor: auto;
   background-color: white;
-  border-color: #25204e;
+  border-color: #55608f;
 }
 
 .paginator__item.active .paginator__item-link {
   z-index: 1;
   color: white;
-  background-color: #14768b;
+  background-color: #49a09d;
 }
 .paginator__item.active:hover {
   background-color: #0d4d5b;
+}
+
+.header {
+  vertical-align: middle;
+  position: relative;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  margin: 0;
+  z-index: 1;
+  overflow: hidden;
+  background-color: #f1f1f1;
+  font-family: Montserrat, OpenSans, Ubuntu, sans-serif;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+.header a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+.header-logo {
+  padding-left: 86px;
+  position: relative;
+  float: left !important;
+}
+
+.header__nav {
+  padding-right: 10px;
+  display: block !important;
+  float: right !important;
+}
+
+.facilityform {
+  display: inline-block;
+  width: auto;
+  vertical-align: middle;
+}
+
+.footer {
+  position: relative;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #333;
+  color: #fff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.footer__left {
+  display: inline-block;
+  float: left !important;
+  padding-left: 86px;
+}
+
+.footer__right {
+  display: inline-block;
+  text-align: right;
+  float: right !important;
+  padding-right: 10px;
 }
 
 /*# sourceMappingURL=styles.css.map */

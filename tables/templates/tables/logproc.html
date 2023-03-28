@@ -4,7 +4,7 @@
 {% load tables_extras %}
 
 {% block content %}
-    <h1>Список событий</h1>Ы
+    <h1>Список событий</h1>
     <div class="card">
         <h2>Фильтр</h2>
         <form method="GET">
@@ -27,232 +27,237 @@
         </form>
     </div>
 
-    <div class="card">
-        <div class="table-wrapper">
-            <table>
-                <thead>
-                <tr>
-                    <th id="seq_id">
-                        <a
-                                {% if order_by == '-seq_id' %}
-                                    sort = "desc"
-                                    class="active"
-                                    href="{% url_link 'seq_id' 'orderby' request.GET.urlencode %}"
-                                {% elif order_by == 'seq_id' %}
-                                    sort = "asc"
-                                    class="active"
-                                    href="{% url_link '-seq_id' 'orderby' request.GET.urlencode %}"
-                                {% else %}
-                                    href="{% url_link '-seq_id' 'orderby' request.GET.urlencode %}"
-                                {% endif %}>
-                            ID Log</a></th>
-                    <th id="eventtime">
-                        <a
-                                {% if order_by == '-eventtime' %}
-                                    sort = "desc"
-                                    class="active"
-                                    href="{% url_link 'eventtime' 'orderby' request.GET.urlencode %}"
-                                {% elif order_by == 'eventtime' %}
-                                    sort = "asc"
-                                    class="active"
-                                    href="{% url_link '-eventtime' 'orderby' request.GET.urlencode %}"
-                                {% else %}
-                                    href="{% url_link '-eventtime' 'orderby' request.GET.urlencode %}"
-                                {% endif %}>
-                            Время события</a></th>
-                    <th id="proc">
-                        <a
-                                {% if order_by == '-proc' %}
-                                    sort = "desc"
-                                    class="active"
-                                    href="{% url_link 'proc' 'orderby' request.GET.urlencode %}"
-                                {% elif order_by == 'proc' %}
-                                    sort = "asc"
-                                    class="active"
-                                    href="{% url_link '-proc' 'orderby' request.GET.urlencode %}"
-                                {% else %}
-                                    href="{% url_link '-proc' 'orderby' request.GET.urlencode %}"
-                                {% endif %}>
-                            Процедура</a></th>
-                    <th id="err_code">
-                        <a
-                                {% if order_by == '-err_code' %}
-                                    sort = "desc"
-                                    class="active"
-                                    href="{% url_link 'err_code' 'orderby' request.GET.urlencode %}"
-                                {% elif order_by == 'err_code' %}
-                                    sort = "asc"
-                                    class="active"
-                                    href="{% url_link '-err_code' 'orderby' request.GET.urlencode %}"
-                                {% else %}
-                                    href="{% url_link '-err_code' 'orderby' request.GET.urlencode %}"
-                                {% endif %}>
-                            Код ошибки</a></th>
-                    <th id="text">
-                        <a
-                                {% if order_by == '-text' %}
-                                    sort = "desc"
-                                    class="active"
-                                    href="{% url_link 'text' 'orderby' request.GET.urlencode %}"
-                                {% elif order_by == 'text' %}
-                                    sort = "asc"
-                                    class="active"
-                                    href="{% url_link '-text' 'orderby' request.GET.urlencode %}"
-                                {% else %}
-                                    href="{% url_link '-text' 'orderby' request.GET.urlencode %}"
-                                {% endif %}>
-                            Текст ошибки</a></th>
-                    <th id="obj_id">
-                        <a
-                                {% if order_by == '-obj_id' %}
-                                    sort = "desc"
-                                    class="active"
-                                    href="{% url_link 'obj_id' 'orderby' request.GET.urlencode %}"
-                                {% elif order_by == 'obj_id' %}
-                                    sort = "asc"
-                                    class="active"
-                                    href="{% url_link '-obj_id' 'orderby' request.GET.urlencode %}"
-                                {% else %}
-                                    href="{% url_link '-obj_id' 'orderby' request.GET.urlencode %}"
-                                {% endif %}>
-                            Идентификатор объекта</a></th>
-                    <th id="obj_type">
-                        <a
-                                {% if order_by == '-obj_type' %}
-                                    sort = "desc"
-                                    class="active"
-                                    href="{% url_link 'obj_type' 'orderby' request.GET.urlencode %}"
-                                {% elif order_by == 'obj_type' %}
-                                    sort = "asc"
-                                    class="active"
-                                    href="{% url_link '-obj_type' 'orderby' request.GET.urlencode %}"
-                                {% else %}
-                                    href="{% url_link '-obj_type' 'orderby' request.GET.urlencode %}"
-                                {% endif %}>
-                            Объект</a></th>
-                    <th id="message_type">
-                        <a
-                                {% if order_by == '-message_type' %}
-                                    sort = "desc"
-                                    class="active"
-                                    href="{% url_link 'message_type' 'orderby' request.GET.urlencode %}"
-                                {% elif order_by == 'message_type' %}
-                                    sort = "asc"
-                                    class="active"
-                                    href="{% url_link '-message_type' 'orderby' request.GET.urlencode %}"
-                                {% else %}
-                                    href="{% url_link '-message_type' 'orderby' request.GET.urlencode %}"
-                                {% endif %}>
-                            Тип события</a></th>
-                    <th id="err_dtl">
-                        <a
-                                {% if order_by == '-err_dtl' %}
-                                    sort = "desc"
-                                    class="active"
-                                    href="{% url_link 'err_dtl' 'orderby' request.GET.urlencode %}"
-                                {% elif order_by == 'err_dtl' %}
-                                    sort = "asc"
-                                    class="active"
-                                    href="{% url_link '-err_dtl' 'orderby' request.GET.urlencode %}"
-                                {% else %}
-                                    href="{% url_link '-err_dtl' 'orderby' request.GET.urlencode %}"
-                                {% endif %}>
-                            err_dtl</a></th>
-                    <th id="err_hint">
-                        <a
-                                {% if order_by == '-err_hint' %}
-                                    sort = "desc"
-                                    class="active"
-                                    href="{% url_link 'err_hint' 'orderby' request.GET.urlencode %}"
-                                {% elif order_by == 'err_hint' %}
-                                    sort = "asc"
-                                    class="active"
-                                    href="{% url_link '-err_hint' 'orderby' request.GET.urlencode %}"
-                                {% else %}
-                                    href="{% url_link '-err_hint' 'orderby' request.GET.urlencode %}"
-                                {% endif %}>
-                            err_hint</a></th>
-                </tr>
-                </thead>
-                <tbody>
-
-                {% for logpr in page_object %}
-                    <tr>
-                        <td>
-                            <span class="div-overflow">{{ logpr.seq_id }}</span>
-                        </td>
-                        <td>
-                            <span class="div-overflow">{{ logpr.eventtime |date:"d.m.Y H:i:sO" }}</span>
-                        </td>
-                        <td>
-                            <span class="div-overflow">{{ logpr.proc }}</span>
-                        </td>
-                        <td>
-                            <span class="div-overflow">{{ logpr.err_code }}</span>
-                        </td>
-                        <td>
-                            <span class="div-overflow">{{ logpr.text }}</span>
-                        </td>
-                        <td>
-                            <span class="div-overflow">{{ logpr.obj_id }}</span>
-                        </td>
-                        <td>
-                            <span class="div-overflow">{{ logpr.obj_type }}</span>
-                        </td>
-                        <td>
-                            <span class="div-overflow">{{ logpr.message_type }}</span>
-                        </td>
-                        <td>
-                            <span class="div-overflow">{{ logpr.err_dtl }}</span>
-                        </td>
-                        <td>
-                            <span class="div-overflow">{{ logpr.err_hint }}</span>
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+    {% if request.get_full_path == '/logproc/' %}
+        <div class="card">
+            <helptext>Заполните фильтры и нажмите «Поиск»</helptext>
         </div>
+    {% else %}
+        <div class="card">
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                    <tr>
+                        <th id="seq_id">
+                            <a
+                                    {% if order_by == '-seq_id' %}
+                                        sort = "desc"
+                                        class="active"
+                                        href="{% url_link 'seq_id' 'orderby' request.GET.urlencode %}"
+                                    {% elif order_by == 'seq_id' %}
+                                        sort = "asc"
+                                        class="active"
+                                        href="{% url_link '-seq_id' 'orderby' request.GET.urlencode %}"
+                                    {% else %}
+                                        href="{% url_link '-seq_id' 'orderby' request.GET.urlencode %}"
+                                    {% endif %}>
+                                ID Log</a></th>
+                        <th id="eventtime">
+                            <a
+                                    {% if order_by == '-eventtime' %}
+                                        sort = "desc"
+                                        class="active"
+                                        href="{% url_link 'eventtime' 'orderby' request.GET.urlencode %}"
+                                    {% elif order_by == 'eventtime' %}
+                                        sort = "asc"
+                                        class="active"
+                                        href="{% url_link '-eventtime' 'orderby' request.GET.urlencode %}"
+                                    {% else %}
+                                        href="{% url_link '-eventtime' 'orderby' request.GET.urlencode %}"
+                                    {% endif %}>
+                                Время события</a></th>
+                        <th id="proc">
+                            <a
+                                    {% if order_by == '-proc' %}
+                                        sort = "desc"
+                                        class="active"
+                                        href="{% url_link 'proc' 'orderby' request.GET.urlencode %}"
+                                    {% elif order_by == 'proc' %}
+                                        sort = "asc"
+                                        class="active"
+                                        href="{% url_link '-proc' 'orderby' request.GET.urlencode %}"
+                                    {% else %}
+                                        href="{% url_link '-proc' 'orderby' request.GET.urlencode %}"
+                                    {% endif %}>
+                                Процедура</a></th>
+                        <th id="err_code">
+                            <a
+                                    {% if order_by == '-err_code' %}
+                                        sort = "desc"
+                                        class="active"
+                                        href="{% url_link 'err_code' 'orderby' request.GET.urlencode %}"
+                                    {% elif order_by == 'err_code' %}
+                                        sort = "asc"
+                                        class="active"
+                                        href="{% url_link '-err_code' 'orderby' request.GET.urlencode %}"
+                                    {% else %}
+                                        href="{% url_link '-err_code' 'orderby' request.GET.urlencode %}"
+                                    {% endif %}>
+                                Код ошибки</a></th>
+                        <th id="text">
+                            <a
+                                    {% if order_by == '-text' %}
+                                        sort = "desc"
+                                        class="active"
+                                        href="{% url_link 'text' 'orderby' request.GET.urlencode %}"
+                                    {% elif order_by == 'text' %}
+                                        sort = "asc"
+                                        class="active"
+                                        href="{% url_link '-text' 'orderby' request.GET.urlencode %}"
+                                    {% else %}
+                                        href="{% url_link '-text' 'orderby' request.GET.urlencode %}"
+                                    {% endif %}>
+                                Текст ошибки</a></th>
+                        <th id="obj_id">
+                            <a
+                                    {% if order_by == '-obj_id' %}
+                                        sort = "desc"
+                                        class="active"
+                                        href="{% url_link 'obj_id' 'orderby' request.GET.urlencode %}"
+                                    {% elif order_by == 'obj_id' %}
+                                        sort = "asc"
+                                        class="active"
+                                        href="{% url_link '-obj_id' 'orderby' request.GET.urlencode %}"
+                                    {% else %}
+                                        href="{% url_link '-obj_id' 'orderby' request.GET.urlencode %}"
+                                    {% endif %}>
+                                Идентификатор объекта</a></th>
+                        <th id="obj_type">
+                            <a
+                                    {% if order_by == '-obj_type' %}
+                                        sort = "desc"
+                                        class="active"
+                                        href="{% url_link 'obj_type' 'orderby' request.GET.urlencode %}"
+                                    {% elif order_by == 'obj_type' %}
+                                        sort = "asc"
+                                        class="active"
+                                        href="{% url_link '-obj_type' 'orderby' request.GET.urlencode %}"
+                                    {% else %}
+                                        href="{% url_link '-obj_type' 'orderby' request.GET.urlencode %}"
+                                    {% endif %}>
+                                Объект</a></th>
+                        <th id="message_type">
+                            <a
+                                    {% if order_by == '-message_type' %}
+                                        sort = "desc"
+                                        class="active"
+                                        href="{% url_link 'message_type' 'orderby' request.GET.urlencode %}"
+                                    {% elif order_by == 'message_type' %}
+                                        sort = "asc"
+                                        class="active"
+                                        href="{% url_link '-message_type' 'orderby' request.GET.urlencode %}"
+                                    {% else %}
+                                        href="{% url_link '-message_type' 'orderby' request.GET.urlencode %}"
+                                    {% endif %}>
+                                Тип события</a></th>
+                        <th id="err_dtl">
+                            <a
+                                    {% if order_by == '-err_dtl' %}
+                                        sort = "desc"
+                                        class="active"
+                                        href="{% url_link 'err_dtl' 'orderby' request.GET.urlencode %}"
+                                    {% elif order_by == 'err_dtl' %}
+                                        sort = "asc"
+                                        class="active"
+                                        href="{% url_link '-err_dtl' 'orderby' request.GET.urlencode %}"
+                                    {% else %}
+                                        href="{% url_link '-err_dtl' 'orderby' request.GET.urlencode %}"
+                                    {% endif %}>
+                                err_dtl</a></th>
+                        <th id="err_hint">
+                            <a
+                                    {% if order_by == '-err_hint' %}
+                                        sort = "desc"
+                                        class="active"
+                                        href="{% url_link 'err_hint' 'orderby' request.GET.urlencode %}"
+                                    {% elif order_by == 'err_hint' %}
+                                        sort = "asc"
+                                        class="active"
+                                        href="{% url_link '-err_hint' 'orderby' request.GET.urlencode %}"
+                                    {% else %}
+                                        href="{% url_link '-err_hint' 'orderby' request.GET.urlencode %}"
+                                    {% endif %}>
+                                err_hint</a></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for logpr in page_object %}
+                        <tr>
+                            <td>
+                                <span class="div-overflow">{{ logpr.seq_id }}</span>
+                            </td>
+                            <td>
+                                <span class="div-overflow">{{ logpr.eventtime |date:"d.m.Y H:i:sO" }}</span>
+                            </td>
+                            <td>
+                                <span class="div-overflow">{{ logpr.proc }}</span>
+                            </td>
+                            <td>
+                                <span class="div-overflow">{{ logpr.err_code }}</span>
+                            </td>
+                            <td>
+                                <span class="div-overflow">{{ logpr.text }}</span>
+                            </td>
+                            <td>
+                                <span class="div-overflow">{{ logpr.obj_id }}</span>
+                            </td>
+                            <td>
+                                <span class="div-overflow">{{ logpr.obj_type }}</span>
+                            </td>
+                            <td>
+                                <span class="div-overflow">{{ logpr.message_type }}</span>
+                            </td>
+                            <td>
+                                <span class="div-overflow">{{ logpr.err_dtl }}</span>
+                            </td>
+                            <td>
+                                <span class="div-overflow">{{ logpr.err_hint }}</span>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
 
 
-        <nav aria-label="Page navigation ">
-            <ul class="paginator">
-                {% if page_object.has_previous %}
-                    <li class="paginator__item"><a
-                            href="{% url_link page_object.previous_page_number 'page' request.GET.urlencode %}"
-                            class="paginator__item-link">
-                        Предыдущая
-                    </a></li>
-                {% endif %}
-
-                {% for page_number in page_object.adjusted_elided_pages %}
-                    {% if page_number == page_object.paginator.ELLIPSIS %}
-                        <li class="paginator__item">
-                            <span class="paginator__item-link"> {{ page_number }} </span>
-                        </li>
-                    {% else %}
-                        <li class="paginator__item {% if page_number == page_object.number %}active{% endif %}">
-                            <a href="{% url_link page_number 'page' request.GET.urlencode %}"
-                               class="paginator__item-link">
-                                {{ page_number }}
-                            </a></li>
+            <nav aria-label="Page navigation ">
+                <ul class="paginator">
+                    {% if page_object.has_previous %}
+                        <li class="paginator__item"><a
+                                href="{% url_link page_object.previous_page_number 'page' request.GET.urlencode %}"
+                                class="paginator__item-link">
+                            Предыдущая
+                        </a></li>
                     {% endif %}
-                {% endfor %}
 
-                {% if page_object.has_next %}
-                    <li class="paginator__item"><a
-                            href="{% url_link page_object.next_page_number 'page' request.GET.urlencode %}"
-                            class="paginator__item-link">
-                        Следующая
-                    </a></li>
-                {% endif %}
-            </ul>
-        </nav>
-        <p>Записи с {{ page_object.start_index }} до {{ page_object.end_index }}
-            (всего {{ page_object.paginator.count }})</p>
+                    {% for page_number in page_object.adjusted_elided_pages %}
+                        {% if page_number == page_object.paginator.ELLIPSIS %}
+                            <li class="paginator__item">
+                                <span class="paginator__item-link"> {{ page_number }} </span>
+                            </li>
+                        {% else %}
+                            <li class="paginator__item {% if page_number == page_object.number %}active{% endif %}">
+                                <a href="{% url_link page_number 'page' request.GET.urlencode %}"
+                                   class="paginator__item-link">
+                                    {{ page_number }}
+                                </a></li>
+                        {% endif %}
+                    {% endfor %}
 
-    </div>
+                    {% if page_object.has_next %}
+                        <li class="paginator__item"><a
+                                href="{% url_link page_object.next_page_number 'page' request.GET.urlencode %}"
+                                class="paginator__item-link">
+                            Следующая
+                        </a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+            <p>Записи с {{ page_object.start_index }} до {{ page_object.end_index }}
+                (всего {{ page_object.paginator.count }})</p>
 
+        </div>
+    {% endif %}
 
 
 {% endblock %}
