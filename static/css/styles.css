@@ -217,7 +217,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #9fccf8;
+  background-color: rgba(13, 77, 91, 0.75);
   transition: opacity 0.75s, visibility 0.75s;
 }
 
@@ -326,11 +326,11 @@ body {
 }
 
 .sidebar-link {
-  padding: 3px 3px 3px 24px;
+  padding: 3px 3px 3px 26px;
   text-decoration: none;
   color: #e6fff8;
   display: block;
-  transition: 0.1s;
+  transition: 0.3s;
 }
 .sidebar-link:hover {
   color: #9fccf8;
@@ -587,6 +587,55 @@ body {
   text-align: right;
   float: right !important;
   padding-right: 10px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000000;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal__content {
+  background-color: #f5f1e7;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 60%;
+  color: black;
+}
+.modal__content h1, .modal__content h2, .modal__content h3, .modal__content h4, .modal__content h5, .modal__content h6 {
+  color: black;
+}
+
+.modal-close {
+  color: lightgray;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.modal-close:hover, .modal-close:focus {
+  color: gray;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-button {
+  background: none !important;
+  border: none;
+  padding: 0 !important;
+  text-decoration: none;
+  cursor: pointer;
+  color: #49a09d;
+}
+.modal-button:hover {
+  color: #9fccf8;
 }
 
 /*# sourceMappingURL=styles.css.map */

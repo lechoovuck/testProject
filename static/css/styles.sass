@@ -26,7 +26,7 @@ html, body
   display: flex
   align-items: center
   justify-content: center
-  background-color: colors.$font-hover
+  background-color: colors.$loader-background
   transition: opacity 0.75s, visibility 0.75s
 
 .loader-hidden
@@ -126,11 +126,11 @@ body
 
 
 .sidebar-link
-  padding: 3px 3px 3px 24px
+  padding: 3px 3px 3px 26px
   text-decoration: none
   color: colors.$font
   display: block
-  transition: 0.1s
+  transition: 0.3s
 
   &:hover
     color: colors.$font-hover
@@ -370,3 +370,48 @@ body
   text-align: right
   float: right !important
   padding-right: 10px
+
+.modal
+  display: none
+  position: fixed
+  z-index: 1000000
+  padding-top: 100px
+  left: 0
+  top: 0
+  width: 100%
+  height: 100%
+  overflow: auto
+  background-color: rgba(0,0,0,0.4)
+
+.modal__content
+  background-color: colors.$background
+  margin: auto
+  padding: 20px
+  border: 1px solid #888
+  width: 60%
+  color: black
+  h1, h2, h3, h4, h5, h6
+    color: black
+
+.modal-close
+  color: lightgray
+  float: right
+  font-size: 28px
+  font-weight: bold
+
+  &:hover,
+  &:focus
+    color: gray
+    text-decoration: none
+    cursor: pointer
+
+.modal-button
+  background: none!important
+  border: none
+  padding: 0!important
+  text-decoration: none
+  cursor: pointer
+  color: colors.$accent
+
+  &:hover
+    color: colors.$font-hover

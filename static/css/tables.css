@@ -1,0 +1,275 @@
+@font-face {
+  font-family: "MontserratTest";
+  font-weight: 100;
+  font-style: normal;
+  src: url(fonts-config/Montserrat-VariableFont_wght.ttf);
+}
+@font-face {
+  font-family: "MontserratTest2";
+  font-weight: 100;
+  font-style: normal;
+  src: url(Montserrat-VariableFont_wght.ttf);
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 100;
+  font-style: normal;
+  src: url("../fonts/Montserrat/static/Montserrat-Thin.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 100;
+  font-style: italic;
+  src: url("../fonts/Montserrat/static/Montserrat-ThinItalic.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 200;
+  font-style: normal;
+  src: url("../fonts/Montserrat/static/Montserrat-ExtraLight.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 200;
+  font-style: italic;
+  src: url("../fonts/Montserrat/static/Montserrat-ExtraLightItalic.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 300;
+  font-style: normal;
+  src: url("../fonts/Montserrat/static/Montserrat-Light.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 300;
+  font-style: italic;
+  src: url("../fonts/Montserrat/static/Montserrat-LightItalic.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: normal;
+  font-style: normal;
+  src: url("../fonts/Montserrat/static/Montserrat-Regular.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: normal;
+  font-style: italic;
+  src: url("../fonts/Montserrat/static/Montserrat-Italic.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: bold;
+  font-style: normal;
+  src: url("../fonts/Montserrat/static/Montserrat-Bold.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: bold;
+  font-style: italic;
+  src: url("../fonts/Montserrat/static/Montserrat-BoldItalic.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 500;
+  font-style: normal;
+  src: url("../fonts/Montserrat/static/Montserrat-Medium.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 500;
+  font-style: italic;
+  src: url("../fonts/Montserrat/static/Montserrat-MediumItalic.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-style: normal;
+  src: url("../fonts/Montserrat/static/Montserrat-SemiBold.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-style: italic;
+  src: url("../fonts/Montserrat/static/Montserrat-SemiBoldItalic.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 800;
+  font-style: normal;
+  src: url("../fonts/Montserrat/static/Montserrat-ExtraBold.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 800;
+  font-style: italic;
+  src: url("../fonts/Montserrat/static/Montserrat-ExtraBoldItalic.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 900;
+  font-style: normal;
+  src: url("../fonts/Montserrat/static/Montserrat-Black.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 900;
+  font-style: italic;
+  src: url("../fonts/Montserrat/static/Montserrat-BlackItalic.ttf");
+}
+@font-face {
+  font-family: "OpenSans";
+  font-weight: normal;
+  font-style: normal;
+  src: url("../fonts/OpenSans/static/OpenSans-Regular.ttf") format("ttf");
+}
+@font-face {
+  font-family: "OpenSans";
+  font-weight: bold;
+  font-style: normal;
+  src: url("../fonts/OpenSans/static/OpenSans-Bold.ttf") format("ttf");
+}
+@font-face {
+  font-family: "OpenSans";
+  font-weight: normal;
+  font-style: italic;
+  src: url("../fonts/OpenSans/static/OpenSans-Italic.ttf") format("ttf");
+}
+@font-face {
+  font-family: "OpenSans";
+  font-weight: bold;
+  font-style: italic;
+  src: url("../fonts/OpenSans/static/OpenSans-BoldItalic.ttf") format("ttf");
+}
+@font-face {
+  font-family: "OpenSans";
+  font-weight: 300;
+  font-style: normal;
+  src: url("../fonts/OpenSans/static/OpenSans-Light.ttf") format("ttf");
+}
+@font-face {
+  font-family: "OpenSans";
+  font-weight: 300;
+  font-style: italic;
+  src: url("../fonts/OpenSans/static/OpenSans-LightItalic.ttf") format("ttf");
+}
+@font-face {
+  font-family: "OpenSans";
+  font-weight: 500;
+  font-style: normal;
+  src: url("../fonts/OpenSans/static/OpenSans-Medium.ttf") format("ttf");
+}
+@font-face {
+  font-family: "OpenSans";
+  font-weight: 500;
+  font-style: italic;
+  src: url("../fonts/OpenSans/static/OpenSans-MediumItalic.ttf") format("ttf");
+}
+@font-face {
+  font-family: "OpenSans";
+  font-weight: 600;
+  font-style: normal;
+  src: url("../fonts/OpenSans/static/OpenSans-SemiBold.ttf") format("ttf");
+}
+@font-face {
+  font-family: "OpenSans";
+  font-weight: 600;
+  font-style: italic;
+  src: url("../fonts/OpenSans/static/OpenSans-SemiBoldItalic.ttf") format("ttf");
+}
+@font-face {
+  font-family: "OpenSans";
+  font-weight: 800;
+  font-style: normal;
+  src: url("../fonts/OpenSans/static/OpenSans-ExtraBold.ttf") format("ttf");
+}
+@font-face {
+  font-family: "OpenSans";
+  font-weight: 800;
+  font-style: italic;
+  src: url("../fonts/OpenSans/static/OpenSans-ExtraBoldItalic.ttf") format("ttf");
+}
+.table-wrapper {
+  border-radius: 10px;
+  height: 2400px;
+}
+
+table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+table thead {
+  background: #55608f;
+  color: #e6fff8;
+  position: sticky;
+}
+table thead tr {
+  z-index: 10;
+}
+table thead tr th {
+  background: rgba(85, 96, 143, 0.75);
+  padding: 5px;
+  z-index: 100;
+  top: 0;
+}
+table thead tr th a {
+  position: relative;
+  text-decoration: none;
+  color: white;
+}
+table thead tr th a:hover {
+  transition: 0.1s;
+  color: #9fccf8;
+}
+table thead tr th a.active {
+  transition: 0.1s;
+  color: #9fccf8;
+  transform: scale(11);
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+table tbody {
+  color: #55608f;
+}
+table tbody tr {
+  z-index: 0;
+}
+table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+table tbody tr td {
+  color: white;
+  background: rgba(50, 56, 84, 0.2);
+  padding: 4px;
+  position: relative;
+  z-index: 0;
+}
+table tbody tr td:hover:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.1);
+  z-index: -1;
+}
+
+.table-td--overflow {
+  display: block;
+  width: 100%;
+  height: 80px;
+  overflow-y: scroll;
+}
+
+.table-wrapper {
+  margin: 0;
+  padding: 0;
+  display: block;
+  width: 100%;
+  overflow: auto;
+  height: 500px;
+}
+
+/*# sourceMappingURL=tables.css.map */
