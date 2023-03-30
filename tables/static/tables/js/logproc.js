@@ -1,6 +1,8 @@
 const filterForm = document.getElementById('filterForm')
 const filterButton = document.getElementById('filterButton')
 const exportButton = document.getElementById('exportButton')
+const loader = document.getElementsByClassName('loader')[0]
+
 if ($('#proc').val().length > 0 ||
     $('#errorText').val().length > 0 ||
     $('#objType').val().length > 0 ||
@@ -25,4 +27,10 @@ filterForm.addEventListener('input', () => {
         exportButton.setAttribute('disabled', 'disabled')
         filterButton.setAttribute('disabled', 'disabled')
     }
+})
+exportButton.addEventListener('click', () => {
+    loader.classList.remove('loader-hidden')
+})
+filterButton.addEventListener('click', () => {
+    loader.classList.remove('loader-hidden')
 })

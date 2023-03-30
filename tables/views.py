@@ -278,7 +278,7 @@ def log_proc(request):
         response['Content-Disposition'] = 'attachment; filename=data.csv'
         writer = csv.writer(response)
         writer.writerow(
-            ['id', 'datetime', 'procedure', 'error_code', 'error_text', 'object_id', 'object_type', 'message_type',
+            ['id', ' Дата', ' Процесс', ' Код ошибки', ' Текст ошибки', ' id объекта', ' Тип объекта', ' тип сообщения',
              'err_dtl', 'err_hint'])
 
         for event in filters.qs:

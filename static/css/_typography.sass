@@ -1,6 +1,8 @@
 @use 'fonts-config/opensans'
 @use 'fonts-config/montserrat'
+@use 'fonts-config/materialIcons'
 
 @mixin fonts
+  @include materialIcons.material-icons-font-face
   @include montserrat.montserrat-font-face
   @include opensans.opensans-font-face

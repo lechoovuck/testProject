@@ -1,15 +1,47 @@
 @font-face {
-  font-family: "MontserratTest";
-  font-weight: 100;
+  font-family: "Material Icons";
   font-style: normal;
-  src: url(fonts-config/Montserrat-VariableFont_wght.ttf);
+  font-weight: 400;
+  src: url("../fonts/MaterialIcons/static/MaterialIcons.woff2") format("woff2");
 }
+.material-icons {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -moz-font-feature-settings: "liga";
+  -moz-osx-font-smoothing: grayscale;
+}
+
 @font-face {
-  font-family: "MontserratTest2";
-  font-weight: 100;
+  font-family: "Material Icons Round";
   font-style: normal;
-  src: url(Montserrat-VariableFont_wght.ttf);
+  font-weight: 400;
+  src: url("../fonts/MaterialIcons/static/MaterialIconsRound.woff2") format("woff2");
 }
+.material-icons-round {
+  font-family: "Material Icons Round";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -moz-font-feature-settings: "liga";
+  -moz-osx-font-smoothing: grayscale;
+}
+
 @font-face {
   font-family: "Montserrat";
   font-weight: 100;
